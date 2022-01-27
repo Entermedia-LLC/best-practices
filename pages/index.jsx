@@ -40,7 +40,7 @@ export default function Index() {
         comprehensive; we value creativity at Entermedia. The aim is for this
         document to provide a strong guidance, not an authoritative direction.
         It&apos;s our hope that these best practices will not only influence
-        10uppers but community members as well.
+        Entermediaites but community members as well.
       </p>
       <blockquote>
         <p>We make web publishing easy. Maybe even fun.</p>

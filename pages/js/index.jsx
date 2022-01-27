@@ -34,11 +34,7 @@ export default function CSS() {
         </Heading>
         <p>
           Entermedia maintains a{" "}
-          <a
-            href="https://github.com/10up/eslint-config"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://github.com/" target="_blank" rel="noreferrer">
             eslint shareable config
           </a>{" "}
           that is used across all 10up projects. It exposes several different
