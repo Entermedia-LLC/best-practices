@@ -1,0 +1,11 @@
+@import "../../../styles/core";
+
+.main {
+  max-width: 1200px;
+  padding-top: var(--header-height);
+  @include screen-padding;
+
+  @include breakpoint(medium) {
+    padding-left: var(--sidebar-width);
+  }
+}

@@ -1,0 +1,46 @@
+@import "../../../styles/core";
+
+.sidebar {
+  @include screen-padding;
+
+  @include breakpoint(medium) {
+    height: calc(100vh - var(--header-height));
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: var(--header-height);
+    width: var(--sidebar-width);
+  }
+}
+
+.sidebar_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar_link {
+  background-image: none;
+  display: block;
+  font-weight: bold;
+  line-height: 1;
+  margin-top: 2rem;
+  padding-bottom: 0.9rem;
+  padding-top: 0.9rem;
+
+  &:hover {
+    background-image: none;
+  }
+}
+
+.sidebar_list__child {
+  font-size: 0.75em;
+  margin-left: 2rem;
+
+  .sidebar_link {
+    font-weight: normal;
+    border-left: 3px solid var(--color-delta);
+    margin-top: 0;
+    padding-left: 1.2rem;
+  }
+}

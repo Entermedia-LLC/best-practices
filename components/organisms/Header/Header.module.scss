@@ -1,0 +1,17 @@
+// organisms/Header/Header.module.scss
+
+@import "../../../styles/core";
+
+.header {
+  @include screen-padding;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 10%);
+  display: flex;
+  height: var(--header-height);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9;
+}

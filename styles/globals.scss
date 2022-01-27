@@ -1,0 +1,68 @@
+@import "core";
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  color: var(--body-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  line-height: var(--body-line-height);
+}
+
+// Get rid of gap under images by making them display: inline-block; by default.
+img {
+  display: inline-block;
+  height: auto;
+  -ms-interpolation-mode: bicubic; /* stylelint-disable-line property-no-vendor-prefix */
+  max-width: 100%;
+}
+
+a {
+  @include underline;
+
+  color: var(--anchor-color);
+  text-decoration: var(--anchor-text-decoration);
+
+  &:hover {
+    color: var(--anchor-color-hover);
+    text-decoration: var(--anchor-color-text-decoration);
+  }
+}
+
+p,
+hr {
+  margin: var(--paragraph-margin);
+}
+
+code {
+  background-color: var(--color-delta);
+  border-radius: 0.2rem;
+  color: var(--color-epsilon);
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  padding: 0.25em 0.5em;
+}
+
+h2 {
+  border-bottom: 1px solid var(--color-alpha);
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  font-size: 0.8em !important;
+}
+
+pre[class*="language-"] > code {
+  border-left-color: var(--color-beta) !important;
+}

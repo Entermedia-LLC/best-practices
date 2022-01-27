@@ -1,0 +1,34 @@
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  } @else {
+    @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. '
+      + 'Available breakpoints are: #{map-keys($breakpoints)}.';
+  }
+}
+
+@mixin underline() {
+  background-image: linear-gradient(
+      transparent calc(100% - 7px),
+      var(--color-gamma) 0
+    ),
+    linear-gradient(transparent calc(100% - 7px), var(--color-gamma) 0);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 0 100%, 100% 100%;
+
+  &:hover {
+    background-image: linear-gradient(
+        transparent calc(100% - 7px),
+        var(--color-gamma) 0
+      ),
+      linear-gradient(transparent calc(100% - 7px), var(--color-zeta) 0);
+  }
+}
+
+@mixin screen-padding() {
+  padding-left: var(--screen-padding);
+  padding-right: var(--screen-padding);
+}

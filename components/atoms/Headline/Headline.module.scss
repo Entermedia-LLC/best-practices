@@ -1,0 +1,33 @@
+@import "../../../styles/core";
+
+.headline_link_icon,
+.headline_link_text {
+  margin-left: 5px;
+}
+
+.headline_link_icon {
+  vertical-align: middle;
+}
+
+.headline_link_text {
+  display: none;
+}
+
+.headline_link {
+  @include underline;
+
+  color: var(--body-color);
+  display: inline-block;
+  font-size: 0.5em;
+
+  &:hover {
+    .headline_link_text {
+      display: inline-block;
+    }
+  }
+}
+
+.headline {
+  margin-top: calc(var(--header-height) * -1);
+  padding-top: var(--header-height);
+}
