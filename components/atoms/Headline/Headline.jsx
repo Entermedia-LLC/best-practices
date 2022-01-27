@@ -2,7 +2,8 @@ import Image from "next/image";
 
 import classes from "./Headline.module.scss";
 
-const imageLoader = () => `https://entermedia-llc.github.io/best-practices/`;
+const imageLoader = ({ src }) =>
+  `https://entermedia-llc.github.io/best-practices/${src}`;
 
 const Headline = ({ section, id, showLink, children }) => {
   const SectionTag = `h${section}`;

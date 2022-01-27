@@ -5,7 +5,8 @@ import Link from "next/link";
 
 import classes from "./Header.module.scss";
 
-const imageLoader = () => `https://entermedia-llc.github.io/best-practices/`;
+const imageLoader = ({ src }) =>
+  `https://entermedia-llc.github.io/best-practices/${src}`;
 
 export const Header = () => {
   return (
