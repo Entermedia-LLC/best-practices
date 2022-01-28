@@ -428,6 +428,151 @@ someElement.innerHTML = \`<div class="container"><a href="\${someUrl}">\${someCo
         <Heading section="4">
           Use <code>textContent</code> instead of <code>innerHTML</code>
         </Heading>
+        <p>
+          When setting the human-readable content of a single element, using{" "}
+          <code>textContent</code> is safer than using <code>innerHTML</code>{" "}
+          because it does not parse strings as HTML—meaning any malicious code
+          passed to it will not be executed. Refer to{" "}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent"
+            target="_blank"
+            rel="noreferrer"
+          >
+            MDN’s documentation on <code>textContent</code>
+          </a>{" "}
+          for more info.
+        </p>
+        <Heading section="4">
+          Use the <code>DOM</code> API to create and add elements
+        </Heading>
+        <p>
+          When you need to create multiple DOM elements, use the{" "}
+          <code>document.createElement</code> method to create new elements and
+          the <code>Element</code> API to set attributes and append them to the
+          document. Creating your own elements and attributes will ensure that
+          only those you explicitly define will make their way into the DOM.
+        </p>
+        <p>
+          Note that appending new elements to the DOM is a relatively expensive
+          operation, so in general you’ll want to build out the structure of new
+          elements <em>before</em> adding them to the DOM, preferably within a
+          single container element, then append them to the document all at
+          once.
+        </p>
+        <p>
+          Refer to MDN’s documentation on{" "}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <code>document.createElement</code>
+          </a>{" "}
+          and the{" "}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Element"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <code>Element</code> API
+          </a>{" "}
+          for more info.
+        </p>
+        <Heading section="4">
+          Sanitize HTML strings before adding to the DOM
+        </Heading>
+        <p>
+          In general, using the <code>Element</code> API is the preferred best
+          practice to safely create and add DOM elements. However, it tends to
+          result in much more verbose code compared to HTML-parsing methods like{" "}
+          <code>innerHTML</code>. This can become painful if you need to
+          dynamically create a large number of new elements. In these cases, the
+          convenience of methods like <code>innerHTML</code> can be extremely
+          tempting.
+        </p>
+        <p>
+          If you need to generate a large amount of HTML dynamically, consider
+          using a <code>DOMParser</code> to parse and sanitize HTML strings
+          before adding the HTML to the DOM with a method like{" "}
+          <code>innerHTML</code>. Parsing HTML strings with a{" "}
+          <code>DOMParser</code> will not automatically make the code any safer,
+          but it will allow you to access the elements from the string and strip
+          potentially unsafe tags and attributes before they have a chance to
+          get executed. Refer to{" "}
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser">
+            MDN’s documentation on <code>DOMParser</code>
+          </a>{" "}
+          for more info.
+        </p>
+        <p>
+          Alternatively, you may consider adding a client-side sanitization
+          library to your project so you can strip potentially malicious code
+          from your HTML before you add it to the DOM. Passing your HTML strings
+          through a sanitizer can help prevent XSS attacks when using methods
+          like <code>innerHTML</code>. However, no library is perfect, so be
+          aware that you are relying on the security of the sanitizer you
+          choose. Also, remember to consider the effect on{" "}
+          <a href="#performance">performance</a> when deciding whether to add
+          any large library to your project.
+        </p>
+        <Heading section="2" id="performance" showLink>
+          Performance
+        </Heading>
+        <p>
+          Writing performant code is absolutely critical. Poorly written
+          JavaScript can significantly slow down and even crash the browser. On
+          mobile devices, it can prematurely drain batteries and contribute to
+          data overages. Performance at the browser level is a major part of
+          user experience which is part of the 10up mission statement.
+        </p>
+        <p>
+          We have a published{" "}
+          <a href="https://www.npmjs.com/package/@entermedia-llc/eslint-config">
+            .eslint
+          </a>{" "}
+          configuration that’s used on Entermedia projects and should help you
+          adhere to our coding standards.
+        </p>
+        <Heading section="3">Only Load Libraries You Need</Heading>
+        <p>
+          JavaScript libraries should only be loaded on the page when needed.
+          React + React DOM are around 650 KB together. This isn’t a huge deal
+          on a fast connection but can add up quickly in a constrained bandwidth
+          situation when we start adding a bunch of libraries. Loading a large
+          number of libraries also increases the chance of conflicts.
+        </p>
+        <p>
+          Not only should you only load the libraries you need, but using import
+          statements, you should only load the <em>parts</em> of the libraries
+          you need. For example, if you’re using{" "}
+          <a href="https://lodash.com/" target="_blank" rel="noreferrer">
+            Lodash
+          </a>
+          , it can be very large to load the entire system, especially if you’re
+          not using all of it. You should always utilize import statements to
+          target relevant parts of an external library to make sure you’re
+          loading only what you need. The code block below will illustrate this
+          point:
+        </p>
+        <pre>
+          <code className="language-javascript">{`import map from 'lodash/map';
+import tail from 'lodash/tail';
+import times from 'lodash/times';
+import uniq from 'lodash/uniq';`}</code>
+        </pre>
+        <p>
+          This code block imports four methods from Lodash instead of the entire
+          library.{" "}
+          <a
+            href="https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read more about the proper way to load Lodash
+          </a>
+          . These imports can also be reduced to a single line, but for Lodash
+          specifically, it’s more performant to separate them.
+        </p>
       </section>
     </>
   );

@@ -38,9 +38,24 @@ const content = [
         title: "Design Patterns",
       },
       {
+        path: "/js#performance",
+        title: "Performance",
+      },
+      {
         id: "js-react",
         path: "/js/react",
         title: "React.js",
+      },
+    ],
+  },
+  {
+    id: "qa",
+    path: "/qa",
+    title: "QA",
+    children: [
+      {
+        path: "/qa#reporting-issues",
+        title: "Reporting Issues",
       },
     ],
   },
