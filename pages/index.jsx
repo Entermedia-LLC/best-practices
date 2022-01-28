@@ -87,7 +87,11 @@ export default function Index() {
       </Heading>
       <p>
         Please contribute via{" "}
-        <a href="" target="_blank" rel="noreferrer">
+        <a
+          href="https://github.com/Entermedia-LLC/best-practices"
+          target="_blank"
+          rel="noreferrer"
+        >
           pull requests on GitHub
         </a>
         .
