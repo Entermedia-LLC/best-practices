@@ -34,20 +34,16 @@ export default function CSS() {
         </Heading>
         <p>
           Entermedia maintains a{" "}
-          <a href="https://github.com/" target="_blank" rel="noreferrer">
-            eslint shareable config
-          </a>{" "}
-          that is used across all 10up projects. It exposes several different
-          configs and engineers should opt-in to the config that best fits the
-          project. We also maintain a{" "}
           <a
-            href="https://github.com/10up/babel-preset-default/"
+            href="https://github.com/Entermedia-LLC/eslint-config"
             target="_blank"
             rel="noreferrer"
           >
-            babel-preset
+            eslint shareable config
           </a>{" "}
-          that works well for most of our projects.
+          that is used across all Entermedia projects. It exposes several
+          different configs and engineers should opt-in to the config that best
+          fits the project.
         </p>
         <p>
           As far as JavaScript documentation goes, we conform to the{" "}
@@ -81,15 +77,7 @@ export default function CSS() {
           On all new projects you should be using up to date JavaScript
           methodologies combined with a build process tool like Babel to ensure
           browser compatibility. This allows us to utilize modern techniques
-          while being certain our code will not break in older systems. The{" "}
-          <a
-            href="https://github.com/10up/wp-scaffold"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Entermedia WP Scaffold
-          </a>{" "}
-          have this functionality built in.
+          while being certain our code will not break in older systems.
         </p>
         <p>
           Some older projects that have not yet been upgraded may not have the
