@@ -2,7 +2,7 @@
 
 .main {
   max-width: 1200px;
-  padding-top: var(--header-height);
+  padding-top: calc(var(--header-height) + 1.9rem);
   @include screen-padding;
 
   @include breakpoint(medium) {

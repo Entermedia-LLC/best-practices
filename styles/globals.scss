@@ -54,13 +54,26 @@ code {
   padding: 0.25em 0.5em;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
 h2 {
   border-bottom: 1px solid var(--color-alpha);
 }
 
 code[class*="language-"],
 pre[class*="language-"] {
-  font-size: 0.8em !important;
+  font-size: 0.9em !important;
 }
 
 pre[class*="language-"] > code {

@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 
+import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+
+import imageLoader from "../../utils/imageLoader";
 
 import Heading from "../../components/atoms/Headline/Headline";
 
@@ -573,6 +576,407 @@ import uniq from 'lodash/uniq';`}</code>
           . These imports can also be reduced to a single line, but for Lodash
           specifically, it’s more performant to separate them.
         </p>
+        <Heading section="3">Cache DOM Selections</Heading>
+        <p>
+          It’s a common JavaScript mistake to reselect something unnecessarily.
+          For example, every time a menu button is clicked, we do not need to
+          reselect the menu. Rather, we select the menu once and cache its
+          selector. This applies whether you are using a library or not. For
+          example:
+        </p>
+        <p>Uncached:</p>
+        <pre>
+          <code className="language-javascript">{`const hideButton = document.querySelector('.hide-button');
+
+hideButton.addEventListener('click', () => {
+	const menu = document.getElementById('menu');
+	menu.style.display = 'none';
+});`}</code>
+        </pre>
+        <p>Cached:</p>
+        <pre>
+          <code className="language-javascript">{`const menu = document.getElementById('menu');
+const hideButton = document.querySelector('.hide-button');
+
+hideButton.addEventListener('click', () => {
+	menu.style.display = 'none';
+});`}</code>
+        </pre>
+        <p>
+          Notice how, in cached versions, we are pulling the menu selection out
+          of the event listener so it only happens once. The cached version is,
+          not surprisingly, the{" "}
+          <a
+            href="https://jsperf.com/dom-selection-caching"
+            target="_blank"
+            rel="noreferrer"
+          >
+            fastest way to handle this situation
+          </a>
+          .
+        </p>
+        <Heading section="3">Event Delegation</Heading>
+        <p>
+          Event delegation is the act of adding one event listener to a parent
+          node to listen for events bubbling up from its children. This is much
+          more performant than adding one event listener for each child element.
+          Here is an example:
+        </p>
+        <pre>
+          <code className="language-javascript">{`document.getElementById('menu').addEventListener('click', (event) => {
+	const { currentTarget } = event;
+	let { target } = event;
+
+	if (currentTarget && target) {
+		if (target.nodeName === 'LI') {
+			// Do stuff with target!
+		} else {
+			while (currentTarget.contains(target)) {
+				// Do stuff with a parent.
+				target = target.parentNode;
+			}
+		}
+	}
+});`}</code>
+        </pre>
+        <p>
+          You may be wondering why we don’t just add one listener to the{" "}
+          <code>&lt;body&gt;</code> for all our events. Well, we want the event
+          to <em>bubble up the DOM as little as possible</em> for{" "}
+          <a
+            href="https://jsperf.com/event-delegation-distance"
+            target="_blank"
+            rel="noreferrer"
+          >
+            performance reasons
+          </a>
+          . This would also be pretty messy code to write.
+        </p>
+        <Heading section="3">
+          Debounce, Throttle, and requestAnimationFrame
+        </Heading>
+        <p>
+          Browser events such as scrolling, resizing, and cursor movements
+          happen as fast as possible and can cause performance issues. By
+          debouncing, throttling, or using requestAnimationFrame on our
+          functions, we can increase performance by controlling the rate at
+          which an event listener calls them.
+        </p>
+        <Heading section="4">Debouncing</Heading>
+        <p>
+          Debouncing a function will prevent it from being called again until a
+          defined amount of time has passed, i.e., execute this function if
+          200ms has passed since it was last called. A common use case would be
+          when resizing a browser window; we can apply classes or move elements
+          after the resize has happened.
+        </p>
+        <Heading section="4">Throttling</Heading>
+        <p>
+          Throttling a function will cause it to only be called a maximum number
+          of times over a defined period of time, i.e., only execute this
+          function once every 50ms. A common use case would be when scrolling a
+          browser window; we may want an element to show up as we scroll down
+          the page, but killing performance by checking the scroll position
+          constantly isn’t necessary. Debouncing wouldn’t work in this example
+          because we don’t want to wait for the user to stop scrolling.
+        </p>
+        <Heading section="4">requestAnimationFrame</Heading>
+        <p>
+          requestAnimationFrame is similar to throttling, but it’s a browser
+          native API and tries to always throttle to 60fps. Its very name helps
+          us know when it’s best to use: while animating things. This would be
+          the case when our JavaScript function is updating element positions,
+          sizes, or anything else that’s “painting” to the screen.
+        </p>
+        <p>
+          Note that some of our recommended utility libraries already provide
+          these functions, such as Underscore’s{" "}
+          <a
+            href="https://underscorejs.org/#debounce"
+            target="_blank"
+            rel="noreferrer"
+          >
+            debounce
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://underscorejs.org/#throttle"
+            target="_blank"
+            rel="noreferrer"
+          >
+            throttle
+          </a>{" "}
+          and Lodash’s{" "}
+          <a
+            href="https://lodash.com/docs/4.17.11#debounce"
+            target="_blank"
+            rel="noreferrer"
+          >
+            debounce
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://lodash.com/docs/4.17.11#throttle"
+            target="_blank"
+            rel="noreferrer"
+          >
+            throttle
+          </a>
+          .
+        </p>
+        <p>
+          For more information and examples of debouncing, throttling, and
+          requestAnimationFrame, see{" "}
+          <a
+            href="https://css-tricks.com/debouncing-throttling-explained-examples/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Debouncing and Throttling Explained Through Examples
+          </a>
+          ,{" "}
+          <a
+            href="https://css-tricks.com/the-difference-between-throttling-and-debouncing/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            The Difference Between Throttling and Debouncing{" "}
+          </a>
+          , and{" "}
+          <a
+            href="https://davidwalsh.name/javascript-debounce-function"
+            target="_blank"
+            rel="noreferrer"
+          >
+            JavaScript Debounce Function
+          </a>
+          .
+        </p>
+        <Heading section="2" id="client-side-data" showLink>
+          Client-side Data
+        </Heading>
+        <p>
+          When dealing with client-side data requests (Ajax calls), there are a
+          lot of different methods to consider. This portion of the document
+          will walk you through various situations and talk about the different
+          technologies and patterns you may encounter along the way.
+        </p>
+        <Heading section="3">
+          Using Fetch and Promises for Modern Environments
+        </Heading>
+        <p>
+          The Fetch API is a modern replacement for the XMLHttpRequest. It is{" "}
+          <a
+            href="https://caniuse.com/#search=fetch"
+            target="_blank"
+            rel="noreferrer"
+          >
+            generally well supported
+          </a>
+          , having features present in all evergreen browsers (browsers that
+          auto-update). Fetch is recommended to be used in all modern
+          environments when making Ajax calls or dealing with client-side data
+          requests. Visit the{" "}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+            target="_blank"
+            rel="noreferrer"
+          >
+            MDN Fetch documentation
+          </a>{" "}
+          for a basic example of how to use this API.
+        </p>
+        <p>
+          To properly use fetch, support for Promises also needs to be present
+          (Promises and Fetch have the same{" "}
+          <a
+            href="https://caniuse.com/#search=promise"
+            target="_blank"
+            rel="noreferrer"
+          >
+            browser support
+          </a>
+          ). The support requirement for both is an important distinction when
+          your project needs to support non-evergreen browsers (IE 11 and
+          under), because both APIs will need to be polyfilled to get Fetch
+          working.
+        </p>
+        <p>
+          To polyfill with NPM, we recommend adding the following packages to
+          your dependencies:{" "}
+          <a
+            href="https://www.npmjs.com/package/promise-polyfill"
+            target="_blank"
+            rel="noreferrer"
+          >
+            promise-polyfill
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.npmjs.com/package/whatwg-fetch"
+            target="_blank"
+            rel="noreferrer"
+          >
+            whatwg-fetch
+          </a>
+          . They are both applicable at different points in the build process.
+          Promises are polyfilled at the file-level with an import and fetch is
+          polyfilled at the build level in your task runner. Please see the{" "}
+          <a
+            href="https://www.npmjs.com/package/whatwg-fetch"
+            target="_blank"
+            rel="noreferrer"
+          >
+            official whatwg-fetch documentation
+          </a>{" "}
+          for detailed installation instructions.
+        </p>
+        <p>
+          If you are unable to process the polyfills in a modern workflow, the
+          files can also be downloaded and enqueued separately (
+          <a
+            href="https://cdnjs.com/libraries/fetch"
+            target="_blank"
+            rel="noreferrer"
+          >
+            fetch
+          </a>
+          ,{" "}
+          <a
+            href="https://cdn.jsdelivr.net/npm/promise-polyfill@8/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            promise
+          </a>
+          ), but if possible, they should be implemented at the build level.
+        </p>
+        <Heading section="3">
+          Using A Normal Ajax Call for Older Environments
+        </Heading>
+        <p>
+          For various reasons on a project, you may not be able to use a modern
+          technique for dealing with client-side data requests. If you find
+          yourself in that situation, it usually isn’t necessary to load an
+          entire library like jQuery for a single feature. If you find yourself
+          in this situation try writing a vanilla ajax call instead. Basic ajax
+          calls do not require any pollyfills or fallbacks, with the exception
+          of providing support on very old browsers like, Internet Explorer 6.
+          You can reference the{" "}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#Browser_compatibility"
+            target="_blank"
+            rel="noreferrer"
+          >
+            XMLHttpRequest Browser Compatibility table
+          </a>{" "}
+          on MDN for specific feature support.
+        </p>
+        <p>
+          Please see the{" "}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"
+            target="_blank"
+            rel="noreferrer"
+          >
+            MDN XMLHttpRequest documentation
+          </a>{" "}
+          for an example of a basic Ajax call.
+        </p>
+        <Heading section="3">
+          When to Use a Client-side Data Request Library
+        </Heading>
+        <p>
+          Sometimes a project may require a more robust solution for managing
+          your requests, especially if you will be making many requests to
+          various endpoints. While Fetch can do most (and someday all) of the
+          things we need, there may be a few areas where it could fall short in
+          your project. A few main items where Fetch may fall short:
+        </p>
+        <ul>
+          <li>Cancelable requests</li>
+          <li>Timeout requests</li>
+          <li>Request progress</li>
+        </ul>
+        <p>
+          It should be noted that these are in{" "}
+          <a
+            href="https://github.com/github/fetch#aborting-requests"
+            target="_blank"
+            rel="noreferrer"
+          >
+            active development
+          </a>{" "}
+          and timeout requests can also be handled by using a{" "}
+          <a
+            href="https://davidwalsh.name/fetch-timeout"
+            target="_blank"
+            rel="noreferrer"
+          >
+            wrapper function
+          </a>
+          .
+        </p>
+        <p>
+          Certain libraries have these built in already and are still
+          promised-based, but can also come with a few other advantages that
+          Fetch doesn’t have like:{" "}
+          <a
+            href="https://github.com/axios/axios"
+            target="_blank"
+            rel="noreferrer"
+          >
+            transformers
+          </a>
+          ,{" "}
+          <a
+            href="https://github.com/axios/axios"
+            target="_blank"
+            rel="noreferrer"
+          >
+            interceptors
+          </a>
+          , and built-in{" "}
+          <a
+            href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"
+            target="_blank"
+            rel="noreferrer"
+          >
+            XSRF protection
+          </a>
+          . If you find yourself needing these features that are outside the
+          scope of native JavaScript you may want to evaluate the benefit of
+          using a library.
+        </p>
+        <p>
+          If you plan on making many requests over the lifetime of the
+          application and you don’t need the features listed above, you should
+          consider making a{" "}
+          <a
+            href="https://medium.com/@shahata/why-i-wont-be-using-fetch-api-in-my-apps-6900e6c6fe78"
+            target="_blank"
+            rel="noreferrer"
+          >
+            helper function or module
+          </a>{" "}
+          that will handle all of your application’s Fetch calls so you can
+          easily include things like: expected error handling, a common URL
+          base, any cookies you may need, any mode changes like CORS, etc..
+          Overall, you should be able to accomplish what you need to with Fetch
+          in the majority of cases.
+        </p>
+        <Heading section="2" id="refresher" showLink>
+          Code Reference/Refresher
+        </Heading>
+        <Heading section="3">Working with Arrays</Heading>
+        <Heading section="4">Which Array Method to Use?</Heading>
+        <Image
+          src="/images/array-methods.jpg"
+          width={820}
+          height={461}
+          alt="Which array method to use?"
+          loader={imageLoader}
+        />
       </section>
     </>
   );

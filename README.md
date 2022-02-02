@@ -1,6 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Entermedia Engineering Best Practices
+
+> These are the official best practices for Entermedia. This guide dictates how we, as a company, engineer websites. The purpose behind them is to improve the quality of the experiences we build as well as to standardize in order to facilitate more effective collaboration.
+
+[![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level)
+
+**[Start reading ☞](https://entermedia-llc.github.io/best-practices/)**
+
+## Contributions
+
+We don't know everything! We welcome pull requests and spirited debates :)
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
 

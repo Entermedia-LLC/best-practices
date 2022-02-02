@@ -42,9 +42,17 @@ const content = [
         title: "Performance",
       },
       {
+        path: "/js#client-side-data",
+        title: "Client-side Data",
+      },
+      {
         id: "js-react",
         path: "/js/react",
         title: "React.js",
+      },
+      {
+        path: "/js#refresher",
+        title: "Code Reference/Refresher",
       },
     ],
   },
