@@ -25,14 +25,74 @@ export const Header = () => {
         <ul>
           <li>
             <a
+              href="https://www.entermedia.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src="images/website.svg"
+                width={16}
+                height={16}
+                alt="Website"
+                loader={imageLoader}
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/entermedia"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src="images/twitter.svg"
+                width={16}
+                height={16}
+                alt="Twitter"
+                loader={imageLoader}
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/entermedia.llc/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src="images/facebook.svg"
+                width={16}
+                height={16}
+                alt="Facebook"
+                loader={imageLoader}
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/entermedia-llc/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src="images/linkedin.svg"
+                width={16}
+                height={16}
+                alt="LinkedIn"
+                loader={imageLoader}
+              />
+            </a>
+          </li>
+          <li>
+            <a
               href="https://github.com/ENTERMEDIA"
               target="_blank"
               rel="noreferrer"
             >
               <Image
                 src="images/github.svg"
-                width={18}
-                height={18}
+                width={16}
+                height={16}
                 alt="Github"
                 loader={imageLoader}
               />

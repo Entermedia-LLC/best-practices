@@ -36,8 +36,18 @@
   display: flex;
 
   ul {
+    display: flex;
     list-style: none;
     margin: 0 1.6rem 0 0;
     padding: 0;
+  }
+
+  li {
+    margin-left: 0.8rem;
+  }
+
+  a {
+    background-image: none;
+    display: block;
   }
 }
