@@ -11,7 +11,7 @@ const Sidebar = () => {
     const navItem = (item, index) => {
       return (
         <li key={index}>
-          <Link href={item.path}>
+          <Link href={`${item.path}#${item.id}`}>
             <a className={classes.sidebar_link}>{item.title}</a>
           </Link>
           {item.children && navMenu(item.children, true)}

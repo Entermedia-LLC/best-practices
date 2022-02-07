@@ -7,11 +7,11 @@ import imageLoader from "../../../utils/imageLoader";
 const Headline = ({ section, id, showLink, children }) => {
   const SectionTag = `h${section}`;
 
-  const slug = id ? `#${id}` : "";
+  const slug = id ? id : "";
 
   const displayLink = () => {
     return (
-      <a href={slug} className={classes.headline_link}>
+      <a href={`#${slug}`} className={classes.headline_link}>
         <span className={classes.headline_link_text}>{slug}</span>
         <span className={classes.headline_link_icon}>
           <Image

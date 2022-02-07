@@ -1,4 +1,4 @@
-@import "../../../styles/core";
+@import "../../../styles/global/core";
 
 .headline_link_icon,
 .headline_link_text {
@@ -19,6 +19,7 @@
   color: var(--body-color);
   display: inline-block;
   font-size: 0.5em;
+  margin-left: 0.6rem;
 
   &:hover {
     .headline_link_text {

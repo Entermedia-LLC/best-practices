@@ -1,11 +1,9 @@
-// layout/default.js
-
 import Header from "../../organisms/Header/Header";
 import Sidebar from "../../organisms/Sidebar/Sidebar";
 
 import classes from "./Default.module.scss";
 
-const Layout = ({ children }) => {
+export default function Default({ children }) {
   return (
     <>
       <Header />
@@ -13,6 +11,4 @@ const Layout = ({ children }) => {
       <main className={classes.main}>{children}</main>
     </>
   );
-};
-
-export default Layout;
+}

@@ -1,18 +1,19 @@
+// React.js imports
 import { useEffect } from "react";
 
+// Next.js imports
 import Head from "next/head";
-import Link from "next/link";
 
+// Component imports
+import Template from "../../components/templates/Default/Default";
 import Heading from "../../components/atoms/Headline/Headline";
 
+// Library imports
 import prismjs from "prismjs";
-
 import "prismjs/themes/prism-coy.css";
 require("prismjs/components/prism-scss");
 
-import classes from "../../styles/layout.module.scss";
-
-export default function CSS() {
+export default function Page() {
   useEffect(() => {
     prismjs.highlightAll();
   }, []);
@@ -25,25 +26,27 @@ export default function CSS() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section>
-        <Heading section="1" id="javascript">
-          QA (Quality Assurance)
-        </Heading>
-        <p>
-          Entermedia uses{" "}
-          <a
-            href="https://entermedia-atx.atlassian.net/jira"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Jira
-          </a>{" "}
-          to report and track project tasks, bugs, etc.
-        </p>
-        <Heading section="2" id="reporting-issues" showLink>
-          Reporting Issues
-        </Heading>
-      </section>
+      <Template>
+        <section>
+          <Heading section="1" id="javascript">
+            Quality Assurance
+          </Heading>
+          <p>
+            Entermedia uses{" "}
+            <a
+              href="https://entermedia-atx.atlassian.net/jira"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Jira
+            </a>{" "}
+            to report and track project tasks, bugs, etc.
+          </p>
+          <Heading section="2" id="reporting-issues" showLink>
+            Reporting Issues
+          </Heading>
+        </section>
+      </Template>
     </>
   );
 }

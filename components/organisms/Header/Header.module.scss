@@ -1,6 +1,4 @@
-// organisms/Header/Header.module.scss
-
-@import "../../../styles/core";
+@import "../../../styles/global/core";
 
 .header {
   @include screen-padding;
@@ -43,7 +41,7 @@
   }
 
   li {
-    margin-left: 0.8rem;
+    margin-left: 1.5rem;
   }
 
   a {

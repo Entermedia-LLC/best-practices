@@ -4,9 +4,9 @@ const content = [
     path: "/",
     title: "Best Practices",
     children: [
-      { path: "/#audience", title: "Audience" },
-      { path: "/#goal", title: "Goal" },
-      { path: "/#contributing", title: "Contributing" },
+      { path: "/", id: "audience", title: "Audience" },
+      { path: "/", id: "goal", title: "Goal" },
+      { path: "/", id: "contributing", title: "Contributing" },
     ],
   },
   {
@@ -14,14 +14,34 @@ const content = [
     path: "/css",
     title: "CSS",
     children: [
-      { path: "/css#philosophy", title: "Philosophy" },
-      { path: "/css#accessibility", title: "Accessibility" },
-      { path: "/css#performance", title: "Performance" },
-      { path: "/css#responsivedesign", title: "Responsive Design" },
-      { path: "/css#syntaxandformatting", title: "Syntax and Formatting" },
-      { path: "/css#documentation", title: "Documentation" },
-      { path: "/css#frameworks", title: "Frameworks" },
-      { path: "/css#futherreading", title: "Further Reading" },
+      { path: "/css", id: "philosophy", title: "Philosophy" },
+      {
+        path: "/css",
+        id: "accessibility",
+        title: "Accessibility",
+      },
+      { path: "/css", id: "performance", title: "Performance" },
+      {
+        path: "/css",
+        id: "responsive-design",
+        title: "Responsive Design",
+      },
+      {
+        path: "/css",
+        id: "syntax",
+        title: "Syntax and Formatting",
+      },
+      {
+        path: "/css",
+        id: "documentation",
+        title: "Documentation",
+      },
+      { path: "/css", id: "frameworks", title: "Frameworks" },
+      {
+        path: "/css",
+        id: "further-reading",
+        title: "Further Reading",
+      },
     ],
   },
   {
@@ -30,20 +50,34 @@ const content = [
     title: "JavaScript",
     children: [
       {
-        path: "/js#philosophy",
+        id: "style",
+        path: "/js",
         title: "Code Style, Tooling & Documentation",
       },
       {
-        path: "/js#designpatterns",
+        id: "design-patterns",
+        path: "/js",
         title: "Design Patterns",
       },
       {
-        path: "/js#performance",
+        id: "performance",
+        path: "/js",
         title: "Performance",
       },
       {
-        path: "/js#client-side-data",
+        id: "client-side-data",
+        path: "/js",
         title: "Client-side Data",
+      },
+      {
+        id: "testing",
+        path: "/js",
+        title: "Unit and Integration Testing",
+      },
+      {
+        id: "libraries",
+        path: "/js",
+        title: "Libraries",
       },
       {
         id: "js-react",
@@ -51,18 +85,83 @@ const content = [
         title: "React.js",
       },
       {
-        path: "/js#refresher",
+        id: "next-js",
+        path: "/js/nextjs",
+        title: "Next.js",
+      },
+      {
+        id: "refresher",
+        path: "/js",
         title: "Code Reference/Refresher",
+      },
+    ],
+  },
+  {
+    id: "markup",
+    path: "/markup",
+    title: "Markup",
+    children: [],
+  },
+  {
+    id: "php",
+    path: "/php",
+    title: "PHP",
+    children: [],
+  },
+  {
+    id: "tools",
+    path: "/tools",
+    title: "Tools",
+    children: [],
+  },
+  {
+    id: "wordpress",
+    path: "/wordpress",
+    title: "WordPress",
+    children: [
+      {
+        id: "performance",
+        path: "/wordpress",
+        title: "Performance",
+      },
+      {
+        id: "wpgraphql",
+        path: "/wordpress",
+        title: "WPGraphQL",
+      },
+    ],
+  },
+  {
+    id: "drupal",
+    path: "/drupal",
+    title: "Drupal",
+    children: [],
+  },
+  {
+    id: "design",
+    path: "/design",
+    title: "Project Design",
+    children: [
+      {
+        id: "organization",
+        path: "/design",
+        title: "Organization",
+      },
+      {
+        id: "package-management",
+        path: "/design",
+        title: "Package Management",
       },
     ],
   },
   {
     id: "qa",
     path: "/qa",
-    title: "QA",
+    title: "Quality Assurance",
     children: [
       {
-        path: "/qa#reporting-issues",
+        id: "reporting-issues",
+        path: "/qa",
         title: "Reporting Issues",
       },
     ],
