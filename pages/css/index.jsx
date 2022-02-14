@@ -6,8 +6,8 @@ import Head from "next/head";
 import Link from "next/link";
 
 // Component imports
-import Template from "../../components/templates/Default/Default";
-import Heading from "../../components/atoms/Headline/Headline";
+import Template from "../../components/templates/Default";
+import Headline from "../../components/molecules/Headline";
 
 // Library imports
 import prismjs from "prismjs";
@@ -30,12 +30,12 @@ export default function Page() {
 
       <Template>
         <section>
-          <Heading section="1" id="css">
+          <Headline level={1} id="css">
             CSS
-          </Heading>
-          <Heading section="2" id="philosophy" showLink>
+          </Headline>
+          <Headline level={2} id="philosophy" showAnchor>
             Philosophy
-          </Heading>
+          </Headline>
           <p>
             At Entermedia, we value content and the experience users will have
             reading it. We write CSS with this in mind and don&apos;t sacrifice
@@ -48,10 +48,10 @@ export default function Page() {
             Well-structured CSS yields maintainability and better collaboration
             which ultimately yields better client experiences.
           </p>
-          <Heading section="2" id="accessibility" showLink>
+          <Headline level={2} id="accessibility" showAnchor>
             Accessibility
-          </Heading>
-          <Heading section="3">Animation</Heading>
+          </Headline>
+          <Headline level={3}>Animation</Headline>
           <p>
             Not every animation brings pleasure to the end user. In some cases
             motion can trigger harmful reactions from users with vestibular
@@ -94,9 +94,9 @@ export default function Page() {
             </a>
             .
           </p>
-          <Heading section="2" id="performance" showLink>
+          <Headline level={2} id="performance" showAnchor>
             Performance
-          </Heading>
+          </Headline>
           <p>
             Let&apos;s be honest, CSS “speed” and performance is not as
             important as PHP or JavaScript performance. However, this
@@ -113,16 +113,16 @@ export default function Page() {
             Performance best practices are not only for the browser experience,
             but for code maintenance as well.
           </p>
-          <Heading section="2" id="responsive-design" showLink>
+          <Headline level={2} id="responsive-design" showAnchor>
             Responsive Design
-          </Heading>
+          </Headline>
           <p>
             We build our websites mobile first. We do not rely on JavaScript
             libraries such as <code>respond.js</code> as it does not work well
             in certain environments. Instead, we leverage a natural,
             mobile-first build process and allow sites gracefully degrade.
           </p>
-          <Heading section="3">Min-width media queries</Heading>
+          <Headline level={3}>Min-width media queries</Headline>
           <p>
             A responsive website should be built with min-width media queries.
             This approach means that our media queries are consistent, readable
@@ -144,14 +144,14 @@ export default function Page() {
             </li>
           </ul>
           <p>Avoid mixing min-width and max-width media queries.</p>
-          <Heading section="3">Breakpoints</Heading>
+          <Headline level={3}>Breakpoints</Headline>
           <p>
             Working with build tools that utilize Sass or PostCSS processing, we
             can take advantages of reusability and avoid having an
             unmaintainable number of breakpoints. Using variables and reusable
             code blocks we can lighten the CSS load and ease maintainability.
           </p>
-          <Heading section="3">Media queries placement</Heading>
+          <Headline level={3}>Media queries placement</Headline>
           <p>
             In your stylesheet files, nest the media query within the component
             it modifies. <strong>Do not</strong> create size-based partials
@@ -190,7 +190,7 @@ export default function Page() {
     color: orange;
   }`}</code>
           </pre>
-          <Heading section="3">IE8 and older browser support</Heading>
+          <Headline level={3}>IE8 and older browser support</Headline>
           <p>
             We prefer showing a fixed-width non-responsive desktop version to
             older IE users rather than showing a mobile version.
@@ -199,16 +199,16 @@ export default function Page() {
             <li>Use a feature detection to target older browsers.</li>
             <li>Load a different stylesheet for older browsers.</li>
           </ul>
-          <Heading section="2" id="syntax" showLink>
+          <Headline level={2} id="syntax" showAnchor>
             Syntax and Formatting
-          </Heading>
+          </Headline>
           <p>
             Syntax and formatting are keys to a maintainable project. By keeping
             our code style consistent, we not only help ourselves debug faster
             but we&apos;re also lessening the burden on those who will have to
             maintain our code (maybe ourselves too!).
           </p>
-          <Heading section="3">CSS Syntax</Heading>
+          <Headline level={3}>CSS Syntax</Headline>
           <p>
             CSS syntax is not strict and will accept a lot of variations, but
             for the sake of legibility and fast debugging, we follow basic code
@@ -300,7 +300,7 @@ export default function Page() {
     margin-left: 10px;
   }`}</code>
           </pre>
-          <Heading section="3">Declaration ordering</Heading>
+          <Headline level={3}>Declaration ordering</Headline>
           <p>
             Declarations should be ordered alphabetically or by type
             (Positioning, Box model, Typography, Visual). Whichever order is
@@ -316,7 +316,7 @@ export default function Page() {
             </li>
             <li>Nested selectors</li>
           </ol>
-          <Heading section="3">Nesting</Heading>
+          <Headline level={3}>Nesting</Headline>
           <p>
             Nesting has changed the lives of many, but like everything in life,
             abusing good things will ultimately be bad. Nesting makes the code
@@ -336,7 +336,7 @@ export default function Page() {
             <li>component states</li>
             <li>media queries</li>
           </ul>
-          <Heading section="3">Selector Naming</Heading>
+          <Headline level={3}>Selector Naming</Headline>
           <p>
             Selectors should be lowercase, and words should be separated with
             hyphens. Please avoid camelcase, but underscores are acceptable if
@@ -370,16 +370,16 @@ export default function Page() {
             </a>{" "}
             to see if it&apos;s likely to be blocked.
           </p>
-          <Heading section="2" id="documentation" showLink>
+          <Headline level={2} id="documentation" showAnchor>
             Documentation
-          </Heading>
+          </Headline>
           <p>
             Code documentation serves two purposes: it makes maintenance easier
             and it makes us stop and think about our code. If the explanation is
             too complex, maybe the code is overly complex too. Documenting helps
             keep our code simple and maintainable.
           </p>
-          <Heading section="3">Commenting</Heading>
+          <Headline level={3}>Commenting</Headline>
           <p>
             We follow WordPress official commenting standards. Do not hesitate
             to be very verbose with your comments, especially when documenting a
@@ -408,7 +408,7 @@ export default function Page() {
     color: red;
   }`}</code>
           </pre>
-          <Heading section="3">Network Requests</Heading>
+          <Headline level={3}>Network Requests</Headline>
           <ul>
             <li>
               Limit the number of requests by concatenating CSS files and
@@ -420,7 +420,7 @@ export default function Page() {
               or/and JavaScript build process.
             </li>
           </ul>
-          <Heading section="3">CSS Specificity</Heading>
+          <Headline level={3}>CSS Specificity</Headline>
           <p>
             Stylesheets should go from less specific rules to highly specific
             rules. We want our selectors specific enough so that we don&apos;t
@@ -451,7 +451,7 @@ export default function Page() {
     background: radial-gradient(ellipse at center,  #a90329 0%,#8f0222 44%,#6d0019 100%);
   }`}</code>
           </pre>
-          <Heading section="3">Inheritance</Heading>
+          <Headline level={3}>Inheritance</Headline>
           <p>
             Fortunately, many CSS properties can be inherited from the parent.
             Take advantage of inheritance to avoid bloating your stylesheet but
@@ -472,20 +472,20 @@ export default function Page() {
     font-family: Arial, sans-serif;
   }`}</code>
           </pre>
-          <Heading section="3">Reusable code</Heading>
+          <Headline level={3}>Reusable code</Headline>
           Styles that can be shared, should be shared (aka DRY, Don&apos;t
           Repeat Yourself). This will make our stylesheets less bloated and
           prevent the browser from doing the same calculations several times.
           Make good use of Sass placeholders. (also see{" "}
           <Link href="/css/#inheritance">Inheritance</Link>)
-          <Heading section="3">CSS over assets</Heading>
+          <Headline level={3}>CSS over assets</Headline>
           <p>
             Don&apos;t add an extra asset if a design element can be translated
             in the browser using CSS only. We value graceful degradation over
             additional HTTP requests.
           </p>
           <p>Very common examples include gradients and triangles.</p>
-          <Heading section="3">Animations</Heading>
+          <Headline level={3}>Animations</Headline>
           <p>
             It&apos;s a common belief that CSS animations are more performant
             than JavaScript animations. A few articles aimed to set the record
@@ -589,10 +589,10 @@ export default function Page() {
               </a>
             </li>
           </ul>
-          <Heading section="2" id="frameworks" showLink>
+          <Headline level={2} id="frameworks" showAnchor>
             Frameworks
-          </Heading>
-          <Heading section="3">Grids</Heading>
+          </Headline>
+          <Headline level={3}>Grids</Headline>
           <p>
             Our preference is not to use a 3rd party grid system, use your best
             judgement and keep them simple! All too often we are faced with a
@@ -607,7 +607,7 @@ export default function Page() {
             that by adopting a grid system you are forcing all future
             collaborators on the project to learn this system.
           </p>
-          <Heading section="3">Resets</Heading>
+          <Headline level={3}>Resets</Headline>
           <p>
             <a
               href="https://necolas.github.io/normalize.css/"
@@ -618,9 +618,84 @@ export default function Page() {
             </a>{" "}
             is our primary tool for CSS resets.
           </p>
-          <Heading section="2" showLink>
+          <Headline level={2} id="aria-base-styles" showAnchor>
+            Structure &amp; Base Styles
+          </Headline>
+          <p>
+            Entermedia a{" "}
+            <Link href="/design#organization">
+              standard directory structure
+            </Link>{" "}
+            and base style setup on all projects for more rapid ramp-up and
+            consistency. Below you&apos;ll find the base style definitions:
+          </p>
+          <ul>
+            <li>
+              <strong>/styles/global/_variables.scss</strong>
+              <pre>
+                <code className="language-scss">{`// Project breakpoints.
+$breakpoints: (
+  "small": (
+    min-width: 0,
+  ),
+  "medium": (
+    min-width: 768px,
+  ),
+  "large": (
+    min-width: 1024px,
+  ),
+);`}</code>
+              </pre>
+            </li>
+            <li>
+              <strong>/styles/global/_mixins.scss</strong>
+              <pre>
+                <code className="language-scss">{`/// Mixin to manage responsive breakpoints
+///
+/// @author Kitty Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin breakpoint($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn 'Unfortunately, no value could be retrieved from \`#{$breakpoint}\`. '
+      + 'Available breakpoints are: #{map-keys($breakpoints)}.';
+  }
+}`}</code>
+              </pre>
+            </li>
+            <li>
+              <strong>/styles/global/_core.scss</strong>
+              <pre>
+                <code className="language-scss">{`// Import sass variables.
+@import "variables";
+
+// Import sass mixins.
+@import "mixins";`}</code>
+              </pre>
+            </li>
+            <li>
+              <strong>/styles/theme/default.scss</strong>
+            </li>
+            <li>
+              <strong>/styles/base.scss</strong>
+            </li>
+          </ul>
+          <p>
+            The _core.scss file should be imported into any standalone
+            stylesheet, like /styles/theme/default.scss.
+          </p>
+          <Headline level={2} showAnchor>
             Further reading
-          </Heading>
+          </Headline>
           <p>
             <a
               href="https://css-tricks.com/just-try-and-do-a-good-job/"

@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import Head from "next/head";
 
 // Component imports
-import Template from "../../components/templates/Default/Default";
-import Heading from "../../components/atoms/Headline/Headline";
+import Template from "../../components/templates/Default";
+import Headline from "../../components/molecules/Headline";
 
 // Library imports
 import prismjs from "prismjs";
@@ -27,10 +27,12 @@ export default function Design() {
 
       <Template>
         <section>
-          <Heading section="1">Project Design</Heading>
-          <Heading section="2" id="organization" showLink>
-            Theme and Plugin File Organization
-          </Heading>
+          <Headline level={1} id="design">
+            Project Design
+          </Headline>
+          <Headline level={2} id="organization" showAnchor>
+            Project File Organization
+          </Headline>
           <p>
             File structure unity across themes and plugins improves engineering
             efficiency and maintainability. We believe the following structure
@@ -41,7 +43,7 @@ export default function Design() {
           </p>
           <pre>
             <code className="language-markup">{`|- assets/
-  |  |- css/ _______________________________ # See below for details
+  |  |- styles/ _______________________________ # See below for details
   |  |- fonts/ _____________________________ # Custom/hosted fonts
   |  |- images/ ____________________________ # Theme images
   |  |- js/ ________________________________ # See below for details
@@ -53,19 +55,20 @@ export default function Design() {
   |- package.json __________________________ # npm package file`}</code>
           </pre>
           <p>
-            The <code>CSS</code> folder is described separately, below to
+            The <code>styles</code> folder is described separately, below to
             improve readability:
           </p>
           <pre>
-            <code className="language-markup">{`|- assets/css/
-  |    |- admin/ ___________________________ # CSS for the admin
-  |    |- frontend/ ________________________ # CSS for the front end
-  |       |- base/ _________________________ # CSS at the top of the cascade
-  |       |- components/ ___________________ # Component-level CSS
-  |       |- global/ _______________________ # Variables and configs
-  |       |- layout/ _______________________ # Layout and helper classes
-  |       |- templates/ ____________________ # CSS for specific templates
-  |    |- shared/ __________________________ # Shared CSS between the admin and front end`}</code>
+            <code className="language-markup">{`|- styles/ ___________________________________ # Non-component specific styles
+|    |- base.scss ____________________________ # Base HTML element styles
+|    |- global/ ______________________________ # Sass variables, mixins & functions
+|       |- _core.scss ________________________ # Includes all required core files
+|       |- _mixins.scss ______________________ # Sass mixins
+|       |- _variables.scss ___________________ # Sass variables
+|    |- helpers/ _____________________________ # Helper classes
+|       |- layout.module.scss ________________ # Layout helpers classes
+|    |- theme/ _______________________________ # Theme styles
+|       |- default.scss ______________________ # Default CSS theme variables`}</code>
           </pre>
           <p>
             The <code>JS</code> folder is described separately, below to improve
@@ -78,9 +81,9 @@ export default function Design() {
   |       |- components/ ___________________ # Component-level JS
   |    |- shared/ __________________________ # Shared JS between the admin and front end`}</code>
           </pre>
-          <Heading section="2" id="package-management" showLink>
+          <Headline level={2} id="package-management" showAnchor>
             Dependencies and Package Management
-          </Heading>
+          </Headline>
           <p>
             Projects generally use two different types of dependency management:
           </p>
@@ -103,7 +106,7 @@ export default function Design() {
               dependencies
             </li>
           </ul>
-          <Heading section="3">When and How to Use Packages</Heading>
+          <Headline level={3}>When and How to Use Packages</Headline>
           <p>
             When choosing a third-party library for inclusion in your project,
             see if it’s available on npm (JavaScript) or Packagist (PHP).
@@ -142,7 +145,7 @@ export default function Design() {
             to the average engineer, be sure to document its purpose in the
             README, style guide, or project documentation.
           </p>
-          <Heading section="3">Selecting Packages</Heading>
+          <Headline level={3}>Selecting Packages</Headline>
           <p>
             Packages are often a Matryoshka of their own dependencies. Though
             this code is almost certainly all open source, it’s not practical to
@@ -166,7 +169,7 @@ export default function Design() {
               along with the ease of modifying the code.
             </li>
           </ul>
-          <Heading section="3">Package Versions and Lock</Heading>
+          <Headline level={3}>Package Versions and Lock</Headline>
           <p>
             When installing a package, engineers can specify a version string
             the package manager uses to select an appropriate package version.
@@ -196,7 +199,7 @@ export default function Design() {
             platform. Lock files should be committed to project version control
             repos so all engineers can be on the same page.
           </p>
-          <Heading section="3">Composer Based Project Structure</Heading>
+          <Headline level={3}>Composer Based Project Structure</Headline>
           <p>Here’s how we might structure a project with Composer:</p>
           <pre>
             <code className="language-markup">{`|- composer.json ____________________________ # Define third party dependencies

@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 
 // Utility imports
-import imageLoader from "../../utils/imageLoader";
+import imageLoader from "../../lib/image-loader";
 
 // Next.js imports
 import Image from "next/image";
@@ -10,13 +10,13 @@ import Head from "next/head";
 import Link from "next/link";
 
 // Component imports
-import Template from "../../components/templates/Default/Default";
-import Heading from "../../components/atoms/Headline/Headline";
+import Template from "../../components/templates/Default";
+import Headline from "../../components/molecules/Headline";
 
 // Library imports
 import prismjs from "prismjs";
 import "prismjs/themes/prism-coy.css";
-require("prismjs/components/prism-javascript");
+import "prismjs/components/prism-javascript";
 
 // CSS module imports
 import classes from "../../styles/helpers/layout.module.scss";
@@ -34,12 +34,12 @@ export default function Page() {
 
       <Template>
         <section>
-          <Heading section="1" id="js">
+          <Headline level={1} id="js">
             JavaScript
-          </Heading>
-          <Heading section="2" id="style" showLink>
+          </Headline>
+          <Headline level={2} id="style" showAnchor>
             Code Style, Tooling &amp; Documentation
-          </Heading>
+          </Headline>
           <p>
             Entermedia maintains a{" "}
             <a
@@ -64,16 +64,16 @@ export default function Page() {
             </a>{" "}
             and those standards are enforced by Entermedia&apos;s eslint config.
           </p>
-          <Heading section="2" id="design-patterns" showLink>
+          <Headline level={2} id="design-patterns" showAnchor>
             Design Patterns
-          </Heading>
+          </Headline>
           <p>
             Standardizing the way we structure our JavaScript allows us to
             collaborate more effectively with one another. Using intelligent
             design patterns improves maintainability, code readability, and even
             helps to prevent bugs.
           </p>
-          <Heading section="3">Writing Modern JavaScript</Heading>
+          <Headline level={3}>Writing Modern JavaScript</Headline>
           <p>
             It’s important we use language features that are intended to be
             used. This means not using deprecated functions, methods, or
@@ -97,7 +97,7 @@ export default function Page() {
             still follow best practice recommendations even if the newest
             patterns are not yet available to you.
           </p>
-          <Heading section="4">Using Classes</Heading>
+          <Headline level={4}>Using Classes</Headline>
           <p>
             Before ES6, classes in JavaScript were created by building a
             constructor function and adding properties by extending the
@@ -108,14 +108,14 @@ export default function Page() {
           </p>
           <pre>
             <code className="language-javascript">{`class BasicExample {
-    constructor(el) {
-      super(); // if you're extending
-    }
+  constructor(el) {
+    super(); // if you're extending
+  }
 
-    init() {
-      console.log('Hello world.');
-    }
-  }`}</code>
+  init() {
+    console.log('Hello world.');
+  }
+}`}</code>
           </pre>
           <p>
             Classes in modern JavaScript offer a nicer syntax to access the
@@ -133,7 +133,7 @@ export default function Page() {
             text may not be a good utilization of Classes, but an accordion menu
             with children components would.
           </p>
-          <Heading section="4">Using Arrow Functions</Heading>
+          <Headline level={4}>Using Arrow Functions</Headline>
           <p>
             Arrow functions are a great way to slim down easily executable code
             blocks. When using this style of function be sure not to over
@@ -175,7 +175,7 @@ export default function Page() {
             traditional treatment of <code>this</code> (like in an event
             listener).
           </p>
-          <Heading section="4">Concatenating Strings and Templating</Heading>
+          <Headline level={4}>Concatenating Strings and Templating</Headline>
           <p>
             When dealing with strings in JavaScript, it is very common to need
             some form of concatenation along the way. Before ES6 we were
@@ -197,7 +197,7 @@ export default function Page() {
   const last = 'world';
   const msg = \`I said, "\${first} \${last}," to the crowd.\`;`}</code>
           </pre>
-          <Heading section="4">Destructuring Arrays and Objects</Heading>
+          <Headline level={4}>Destructuring Arrays and Objects</Headline>
           <p>
             Destructuring is a JavaScript technique that allows you to easily
             assign values and properties from arrays and objects into specific
@@ -224,7 +224,7 @@ export default function Page() {
             Use destructuring whenever possible to slim down your code and
             improve overall readability.
           </p>
-          <Heading section="4">Componentizing Your Code</Heading>
+          <Headline level={4}>Componentizing Your Code</Headline>
           <p>
             Keeping different bits of functionality in your code reasonably
             separated is important to building and maintaining a scalable system
@@ -265,7 +265,7 @@ export default function Page() {
           <pre>
             <code className="language-javascript">{`export const example = 66;`}</code>
           </pre>
-          <Heading section="3">Modules</Heading>
+          <Headline level={3}>Modules</Headline>
           <p>
             When creating your own modules be sure to think about how it should
             be used by others. Luckily ES6 modules makes this a simple task.
@@ -360,7 +360,7 @@ export default function Page() {
     /* options */
   });`}</code>
           </pre>
-          <Heading section="3">Don’t Pollute the Window Object</Heading>
+          <Headline level={3}>Don’t Pollute the Window Object</Headline>
           <p>
             Adding methods or properties to the <code>window</code> object or
             the global namespace should be done carefully. <code>window</code>{" "}
@@ -407,7 +407,7 @@ export default function Page() {
           <p>
             Notice how <code>i</code> was not exposed to the window object.
           </p>
-          <Heading section="3">Secure Your Code</Heading>
+          <Headline level={3}>Secure Your Code</Headline>
           <p>
             In JavaScript, we often have to insert new elements with dynamic
             attributes and content into the DOM. A common way to do this is to
@@ -442,9 +442,9 @@ export default function Page() {
             There are several measures you can take to circumvent this XSS
             vulnerability:
           </p>
-          <Heading section="4">
+          <Headline level={4}>
             Use <code>textContent</code> instead of <code>innerHTML</code>
-          </Heading>
+          </Headline>
           <p>
             When setting the human-readable content of a single element, using{" "}
             <code>textContent</code> is safer than using <code>innerHTML</code>{" "}
@@ -459,9 +459,9 @@ export default function Page() {
             </a>{" "}
             for more info.
           </p>
-          <Heading section="4">
+          <Headline level={4}>
             Use the <code>DOM</code> API to create and add elements
-          </Heading>
+          </Headline>
           <p>
             When you need to create multiple DOM elements, use the{" "}
             <code>document.createElement</code> method to create new elements
@@ -496,9 +496,9 @@ export default function Page() {
             </a>{" "}
             for more info.
           </p>
-          <Heading section="4">
+          <Headline level={4}>
             Sanitize HTML strings before adding to the DOM
-          </Heading>
+          </Headline>
           <p>
             In general, using the <code>Element</code> API is the preferred best
             practice to safely create and add DOM elements. However, it tends to
@@ -533,9 +533,9 @@ export default function Page() {
             <a href="#performance">performance</a> when deciding whether to add
             any large library to your project.
           </p>
-          <Heading section="2" id="performance" showLink>
+          <Headline level={2} id="performance" showAnchor>
             Performance
-          </Heading>
+          </Headline>
           <p>
             Writing performant code is absolutely critical. Poorly written
             JavaScript can significantly slow down and even crash the browser.
@@ -551,7 +551,7 @@ export default function Page() {
             configuration that’s used on Entermedia projects and should help you
             adhere to our coding standards.
           </p>
-          <Heading section="3">Only Load Libraries You Need</Heading>
+          <Headline level={3}>Only Load Libraries You Need</Headline>
           <p>
             JavaScript libraries should only be loaded on the page when needed.
             React + React DOM are around 650 KB together. This isn’t a huge deal
@@ -592,7 +592,7 @@ export default function Page() {
             . These imports can also be reduced to a single line, but for Lodash
             specifically, it’s more performant to separate them.
           </p>
-          <Heading section="3">Cache DOM Selections</Heading>
+          <Headline level={3}>Cache DOM Selections</Headline>
           <p>
             It’s a common JavaScript mistake to reselect something
             unnecessarily. For example, every time a menu button is clicked, we
@@ -631,7 +631,7 @@ export default function Page() {
             </a>
             .
           </p>
-          <Heading section="3">Event Delegation</Heading>
+          <Headline level={3}>Event Delegation</Headline>
           <p>
             Event delegation is the act of adding one event listener to a parent
             node to listen for events bubbling up from its children. This is
@@ -668,9 +668,9 @@ export default function Page() {
             </a>
             . This would also be pretty messy code to write.
           </p>
-          <Heading section="3">
+          <Headline level={3}>
             Debounce, Throttle, and requestAnimationFrame
-          </Heading>
+          </Headline>
           <p>
             Browser events such as scrolling, resizing, and cursor movements
             happen as fast as possible and can cause performance issues. By
@@ -678,7 +678,7 @@ export default function Page() {
             functions, we can increase performance by controlling the rate at
             which an event listener calls them.
           </p>
-          <Heading section="4">Debouncing</Heading>
+          <Headline level={4}>Debouncing</Headline>
           <p>
             Debouncing a function will prevent it from being called again until
             a defined amount of time has passed, i.e., execute this function if
@@ -686,7 +686,7 @@ export default function Page() {
             be when resizing a browser window; we can apply classes or move
             elements after the resize has happened.
           </p>
-          <Heading section="4">Throttling</Heading>
+          <Headline level={4}>Throttling</Headline>
           <p>
             Throttling a function will cause it to only be called a maximum
             number of times over a defined period of time, i.e., only execute
@@ -697,7 +697,7 @@ export default function Page() {
             this example because we don’t want to wait for the user to stop
             scrolling.
           </p>
-          <Heading section="4">requestAnimationFrame</Heading>
+          <Headline level={4}>requestAnimationFrame</Headline>
           <p>
             requestAnimationFrame is similar to throttling, but it’s a browser
             native API and tries to always throttle to 60fps. Its very name
@@ -769,18 +769,18 @@ export default function Page() {
             </a>
             .
           </p>
-          <Heading section="2" id="client-side-data" showLink>
+          <Headline level={2} id="client-side-data" showAnchor>
             Client-side Data
-          </Heading>
+          </Headline>
           <p>
             When dealing with client-side data requests (Ajax calls), there are
             a lot of different methods to consider. This portion of the document
             will walk you through various situations and talk about the
             different technologies and patterns you may encounter along the way.
           </p>
-          <Heading section="3">
+          <Headline level={3}>
             Using Fetch and Promises for Modern Environments
-          </Heading>
+          </Headline>
           <p>
             The Fetch API is a modern replacement for the XMLHttpRequest. It is{" "}
             <a
@@ -868,9 +868,9 @@ export default function Page() {
             </a>
             ), but if possible, they should be implemented at the build level.
           </p>
-          <Heading section="3">
+          <Headline level={3}>
             Using A Normal Ajax Call for Older Environments
-          </Heading>
+          </Headline>
           <p>
             For various reasons on a project, you may not be able to use a
             modern technique for dealing with client-side data requests. If you
@@ -900,9 +900,9 @@ export default function Page() {
             </a>{" "}
             for an example of a basic Ajax call.
           </p>
-          <Heading section="3">
+          <Headline level={3}>
             When to Use a Client-side Data Request Library
-          </Heading>
+          </Headline>
           <p>
             Sometimes a project may require a more robust solution for managing
             your requests, especially if you will be making many requests to
@@ -989,7 +989,7 @@ export default function Page() {
             appropriate. In many cases, replacing with Fetch or XMLHttpRequest
             will be possible.
           </p>
-          <Heading section="3">Concatenating Requests</Heading>
+          <Headline level={3}>Concatenating Requests</Headline>
           <p>
             When constructing a page that contains a lot of client-side data
             requests you will want to consider concatenating your requests into
@@ -997,7 +997,7 @@ export default function Page() {
             sending them through callbacks and nested promises when parts of the
             data depend on other parts.
           </p>
-          <Heading section="4">GraphQL</Heading>
+          <Headline level={4}>GraphQL</Headline>
           <p>
             <a href="https://graphql.org/" target="_blank" rel="noreferrer">
               GraphQL
@@ -1027,9 +1027,9 @@ export default function Page() {
             </a>
             .
           </p>
-          <Heading section="2" id="testing" showLink>
+          <Headline level={2} id="testing" showAnchor>
             Unit and Integration Testing
-          </Heading>
+          </Headline>
           <p>
             At Entermedia, we generally employ unit and integration tests only
             when building applications that are meant to be distributed. Writing
@@ -1039,9 +1039,9 @@ export default function Page() {
             make sure it is well documented for future engineers coming onto the
             project.
           </p>
-          <Heading section="2" id="libraries" showLink>
+          <Headline level={2} id="libraries" showAnchor>
             Libraries
-          </Heading>
+          </Headline>
           <p>
             With the influx of JavaScript upgrades in recent years, the need for
             a third-party library to polyfill functionality is becoming more and
@@ -1062,13 +1062,13 @@ export default function Page() {
             what WordPress uses. The following is a list of primary libraries
             used by Entermedia.
           </p>
-          <Heading section="3">Components</Heading>
+          <Headline level={3}>Components</Headline>
           <p>
             WP Component Library (coming soon) - Provides us with a vetted,
             accessible, and standardized collection of UI component and Schema
             snippets we can use on projects.
           </p>
-          <Heading section="3">Utility</Heading>
+          <Headline level={3}>Utility</Headline>
           <p>
             <a href="http://underscorejs.org" target="_blank" rel="noreferrer">
               Underscore
@@ -1077,7 +1077,7 @@ export default function Page() {
             <code>clone()</code>, <code>each()</code>, and <code>extend()</code>
             . WordPress core uses this library quite a bit.
           </p>
-          <Heading section="3">Frameworks</Heading>
+          <Headline level={3}>Frameworks</Headline>
           <p>
             <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
               React
@@ -1097,11 +1097,42 @@ export default function Page() {
             loading in a heavy library.{" "}
             <Link href="js/vue">Learn more about how we use Vue</Link>.
           </p>
-          <Heading section="2" id="refresher" showLink>
+          <Headline level={3}>Cookies</Headline>
+          <p>
+            Safari browser’s Intelligent Tracking Prevention (ITP) 2.1 sets the
+            expiration period at 7 days for all first-party cookies set by
+            in-line (or tag management solution injected) vendor JavaScript
+            libraries like Google Analytics’ analytics.js.
+          </p>
+          <p>
+            Authentication cookies (secure and HTTP-only) which have been
+            properly implemented won’t be affected by the 7-day cap. These
+            cookies should be deployed using the Set-Cookie header in the HTTP
+            response and inaccessible via JavaScript’s document.cookie API.
+          </p>
+          <p>Solutions for other types of cookies include:</p>
+          <ol>
+            <li>
+              Using localStorage to persist the unique identifier (i.e. the
+              client ID) instead of relying solely on the _ga cookie
+            </li>
+            <li>
+              Setting the _ga cookie with the HTTP response, rather than with
+              JavaScript Keep in mind that these solutions come with caveats:
+              using localStorage only works on the same domain and would not
+              work for cross-domain tracking.
+            </li>
+          </ol>
+          <p>
+            As an alternative to local storage, server-side tracking via the
+            proxy layer in Cloudflare is probably the best option for clients
+            with significant traffic from Safari.
+          </p>
+          <Headline level={2} id="refresher" showAnchor>
             Code Reference/Refresher
-          </Heading>
-          <Heading section="3">Working with Arrays</Heading>
-          <Heading section="4">Which Array Method to Use?</Heading>
+          </Headline>
+          <Headline level={3}>Working with Arrays</Headline>
+          <Headline level={4}>Which Array Method to Use?</Headline>
           <Image
             src="/images/array-methods.jpg"
             width={820}

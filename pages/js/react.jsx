@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import Head from "next/head";
 
 // Component imports
-import Template from "../../components/templates/Default/Default";
-import Heading from "../../components/atoms/Headline/Headline";
+import Template from "../../components/templates/Default";
+import Headline from "../../components/molecules/Headline";
 
 // Library imports
 import prismjs from "prismjs";
@@ -26,7 +26,7 @@ export default function Page() {
 
       <Template>
         <section>
-          <Heading section="1">React.js</Heading>
+          <Headline level={1}>React.js</Headline>
           <p>
             The purpose of this document is to help guide you through working
             with a potential project using the JavaScript library,{" "}
@@ -45,9 +45,9 @@ export default function Page() {
             </a>
             .
           </p>
-          <Heading section="2" id="libraries" showLink>
+          <Headline level={2} id="libraries" showAnchor>
             Libraries
-          </Heading>
+          </Headline>
           <p>
             The following is a list of primary React libraries used by
             Entermedia.

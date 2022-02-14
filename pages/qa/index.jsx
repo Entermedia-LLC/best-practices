@@ -5,13 +5,14 @@ import { useEffect } from "react";
 import Head from "next/head";
 
 // Component imports
-import Template from "../../components/templates/Default/Default";
-import Heading from "../../components/atoms/Headline/Headline";
+import Template from "../../components/templates/Default";
+import Headline from "../../components/molecules/Headline";
 
 // Library imports
 import prismjs from "prismjs";
 import "prismjs/themes/prism-coy.css";
-require("prismjs/components/prism-scss");
+require("prismjs/components/prism-markup");
+require("prismjs/components/prism-json");
 
 export default function Page() {
   useEffect(() => {
@@ -28,9 +29,9 @@ export default function Page() {
 
       <Template>
         <section>
-          <Heading section="1" id="javascript">
+          <Headline level={1} id="javascript">
             Quality Assurance
-          </Heading>
+          </Headline>
           <p>
             Entermedia uses{" "}
             <a
@@ -42,9 +43,70 @@ export default function Page() {
             </a>{" "}
             to report and track project tasks, bugs, etc.
           </p>
-          <Heading section="2" id="reporting-issues" showLink>
+          <Headline level={2} id="aria-front-end-checklist" showAnchor>
+            Front-End Checklist
+          </Headline>
+          <p>
+            All items in the Front-End Checklist are required for the majority
+            of the projects, but some elements can be omitted or are not
+            essential.
+          </p>
+          <Headline level={3}>Favicon</Headline>
+          <p>
+            Instead of serving dozens of icons,{" "}
+            <a
+              href="https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              all you need is just five icons
+            </a>{" "}
+            and one JSON file.
+          </p>
+          <p>For the browser using HTML:</p>
+          <pre>
+            <code className="language-html">{`<link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
+<link rel="manifest" href="/manifest.webmanifest">`}</code>
+          </pre>
+          <p>And in your web app manifest:</p>
+          <pre>
+            <code className="language-json">{`// manifest.webmanifest
+{
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}`}</code>
+          </pre>
+          <Headline level={3}>Open Graph &amp; Social Media Meta Tags</Headline>
+          <Headline level={4}>Open Graph Meta Tags</Headline>
+          <pre>
+            <code className="language-html">{`<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com/page.html">
+<meta property="og:title" content="Content Title">
+<meta property="og:image" content="https://example.com/image.jpg">
+<meta property="og:description" content="Description Here">
+<meta property="og:site_name" content="Site Name">
+<meta property="og:locale" content="en_US">
+<!-- Next tags are optional but recommended -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">`}</code>
+          </pre>
+          <Headline level={4}>Twitter Meta Tags</Headline>
+          <pre>
+            <code className="language-html">{`<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@site_account">
+<meta name="twitter:creator" content="@individual_account">
+<meta name="twitter:url" content="https://example.com/page.html">
+<meta name="twitter:title" content="Content Title">
+<meta name="twitter:description" content="Content description less than 200 characters">
+<meta name="twitter:image" content="https://example.com/image.jpg">`}</code>
+          </pre>
+          <Headline level={2} id="reporting-issues" showAnchor>
             Reporting Issues
-          </Heading>
+          </Headline>
         </section>
       </Template>
     </>
