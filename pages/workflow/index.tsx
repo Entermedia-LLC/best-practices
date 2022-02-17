@@ -76,11 +76,17 @@ git reset --hard origin/develop`}</code>
           creating a branch, check it out locally so that any changes you make
           will be on that branch.
         </p>
+        <Headline level={5}>Branch naming convention</Headline>
+        <p>
+          When naming branches, use the Jira issue number (i.e. project-183).
+          This allows developers to quickly cross-reference the work done in
+          that branch with the coorsponding issue number is Jira.
+        </p>
         <pre>
-          <code className="language-sh">{`git checkout -b new-feature`}</code>
+          <code className="language-sh">{`git checkout -b project-123`}</code>
         </pre>
         <p>
-          This checks out a branch called new-feature based on{" "}
+          This checks out a branch called project-123 based on{" "}
           <code>develop</code>, and the -b flag tells Git to create the branch
           if it doesn’t already exist.
         </p>
@@ -118,10 +124,10 @@ git commit -m "build(initial setup, header): next.js setup and header component"
           the new branch.
         </p>
         <pre>
-          <code className="language-sh">{`git push origin new-feature`}</code>
+          <code className="language-sh">{`git push origin project-123`}</code>
         </pre>
         <p>
-          This command pushes new-feature to the central repository (origin). To
+          This command pushes project-123 to the central repository (origin). To
           get feedback on the new feature branch, create a pull request into the{" "}
           <code>develop</code> branch. From there, you can add reviewers and
           make sure everything is good to go before merging.

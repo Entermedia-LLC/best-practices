@@ -51,7 +51,33 @@ export default function Page() {
             of the projects, but some elements can be omitted or are not
             essential.
           </p>
-          <Headline level={3}>Favicon</Headline>
+          <Headline level={3}>Meta Tags</Headline>
+          <p>
+            Below are the essential elements for any web document
+            (websites/apps):
+          </p>
+          <pre>
+            <code className="language-html">{`<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  The above 2 meta tags *must* come first in the <head>
+  to consistently ensure proper document rendering.
+  Any other head element should come *after* these tags.
+ -->
+<title>Page Title</title>`}</code>
+          </pre>
+          <Headline level={4}>Recommended Meta Tags</Headline>
+          <pre>
+            <code className="language-html">{`<!-- Viewport for responsive web design -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- Meta Description -->
+<meta name="description" content="Description of the page less than 150 characters">
+
+<!-- Helps prevent duplicate content issues -->
+<link rel="canonical" href="http://example.com/2017/09/a-new-article-to-read.html">`}</code>
+          </pre>
+          <Headline level={4}>Favicon</Headline>
           <p>
             Instead of serving dozens of icons,{" "}
             <a
@@ -80,8 +106,8 @@ export default function Page() {
   ]
 }`}</code>
           </pre>
-          <Headline level={3}>Open Graph &amp; Social Media Meta Tags</Headline>
-          <Headline level={4}>Open Graph Meta Tags</Headline>
+          <Headline level={4}>Open Graph &amp; Social Media Meta Tags</Headline>
+          <Headline level={5}>Open Graph Meta Tags</Headline>
           <pre>
             <code className="language-html">{`<meta property="og:type" content="website">
 <meta property="og:url" content="https://example.com/page.html">
@@ -94,7 +120,7 @@ export default function Page() {
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">`}</code>
           </pre>
-          <Headline level={4}>Twitter Meta Tags</Headline>
+          <Headline level={5}>Twitter Meta Tags</Headline>
           <pre>
             <code className="language-html">{`<meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@site_account">
