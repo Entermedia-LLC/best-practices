@@ -13,6 +13,8 @@ import Headline from "../../components/molecules/Headline";
 import prismjs from "prismjs";
 import "prismjs/themes/prism-coy.css";
 import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-json";
+import "prismjs/components/prism-shell-session";
 
 export default function Page() {
   useEffect(() => {
@@ -120,6 +122,129 @@ export default function Page() {
           to do this to make elements render more consistently and in line with
           modern standards.
         </p>
+        <Headline level={3}>Install Storybook</Headline>
+        <p>
+          Entermedia uses{" "}
+          <a href="" target="_blank" rel="noreferrer noopener">
+            Storybook
+          </a>{" "}
+          for building UI components and pages in isolation, allowing for
+          streamline UI development, testing, and documentation.
+        </p>
+        <p>
+          Follow{" "}
+          <a
+            href="https://storybook.js.org/blog/get-started-with-storybook-and-next-js/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            these instructions
+          </a>{" "}
+          to get Storybook up and running in the Next.js project.
+        </p>
+        <p>
+          Once Storybook is installed, add the{" "}
+          <a
+            href="https://storybook.js.org/addons/storybook-addon-next#csssassscss-modules"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Next.js addon
+          </a>
+          .
+        </p>
+        <p>
+          <strong>Having a problem running Storybook?</strong> There&apos;s are
+          a few known issues when running <code>yarn storybook</code>:
+        </p>
+        <pre>
+          <code className="language-sh">{`Error: Cannot find module 'webpack/lib/util/makeSerializable.js'`}</code>
+        </pre>
+        <p>
+          If you run into this, you&apos;ll need to install webpack 5 as a dev
+          dependency:
+        </p>
+        <pre>
+          <code className="language-sh">{`npm install webpack@5.68.0 --save-dev`}</code>
+        </pre>
+
+        <p>You may also see this error:</p>
+
+        <pre>
+          <code className="language-sh">{`ModuleNotFoundError: Module not found: Error: Can't resolve '@storybook/addon-docs'...`}</code>
+        </pre>
+
+        <p>
+          If you run into this, you&apos;ll need to install the
+          @storybook/addon-docs package as a dev dependency:
+        </p>
+
+        <pre>
+          <code className="language-sh">{`npm install @storybook/addon-docs --save-dev`}</code>
+        </pre>
+
+        <Headline level={4}>
+          Update Storybook Config &amp; Remove Example Stories
+        </Headline>
+
+        <p>
+          Once Storybook has been installed, update the{" "}
+          <code>.storybook/main.js</code> config to look for stories in the
+          components directory:
+        </p>
+        <pre>
+          <code className="language-json">{`stories: [
+    "../stories/**/*.stories.mdx",
+    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
+    "../components/**/*.stories.mdx",
+    "../components/**/*.stories.@(js|jsx|ts|tsx)",
+  ],`}</code>
+        </pre>
+
+        <p>
+          Be sure to include the gloabl styles in Storybook&apos;s{" "}
+          <code>preview.js</code> config:
+        </p>
+
+        <pre>
+          <code className="language-javascript">{`// Import global styles
+import "normalize.css";
+import "../styles/theme/default.scss";
+import "../styles/base.scss";`}</code>
+        </pre>
+
+        <Headline level={4}>Useful Storybook Links</Headline>
+
+        <ul>
+          <li>
+            <a
+              href="https://www.youtube.com/watch?v=i5tvZ9f7gJw"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              5 Tips for Integrating Next.js with Storybook
+            </a>
+          </li>
+        </ul>
+
+        <Headline level={3}>Install Leasoft</Headline>
+        <p>
+          Entermedia uses{" "}
+          <a
+            href="https://github.com/pgilad/leasot"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Leasot
+          </a>{" "}
+          to intelligently parse and output TODOs and FIXMEs from comments in
+          your files. Once installed, add a new npm command in the package.json
+          file:
+        </p>
+        <pre>
+          <code className="language-json">{`"todo": "leasot 'components/**/*.tsx' 'pages/**/*.tsx' 'styles/**/*.scss' 'lib/**/*/ts'"`}</code>
+        </pre>
+
         <Headline level={3}>Project Structure</Headline>
         <p>
           Next.js for Drupal&apos;s default project setup will need to be

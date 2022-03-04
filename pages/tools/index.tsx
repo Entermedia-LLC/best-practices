@@ -128,6 +128,19 @@ export default function Page() {
           scripts, and more via the command line. Often this is the only way we
           can affect a large database.
         </p>
+        <p>
+          <a
+            href="https://github.com/pgilad/leasot"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Leasot
+          </a>{" "}
+          - A command line tool to intelligently parse and output TODOs and
+          FIXMEs from comments in your files. It allows you to easily extract,
+          collect, and report TODOs and FIXMEs in your code using regex in order
+          to extract your todos from comments.
+        </p>
         <Headline level={2} id="aria-accessibility-testing" showAnchor>
           Accessibility Testing
         </Headline>
