@@ -233,7 +233,7 @@ const content = [
       {
         id: "aria-getting-started",
         path: "/nextjs-drupal",
-        title: "Getting Started",
+        title: "Project Setup",
       },
     ],
   },

@@ -684,9 +684,107 @@ $breakpoints: (
             </li>
             <li>
               <strong>/styles/theme/default.scss</strong>
+              <pre>
+                <code className="language-scss">{`@import "../global/core";
+
+:root {
+  --global-gutter: 2.5rem;
+  --global-margin: 1.5rem;
+  --global-max-width: 1200px;
+
+  --color-alpha: #231f20;
+  --color-beta: #fff;
+  --color-gamma: #6d6e71;
+  --color-delta: #d4d4d4;
+  --color-epsilon: #f1f1f1;
+
+  --font-serif: serif;
+  --font-sans-serif: Arial, sans-serif;
+
+  --body-background: var(--color-beta);
+  --body-color: var(--color-alpha);
+  --body-font-family: var(--font-sans-serif);
+  --body-font-size: 2rem;
+  --body-line-height: 1.2;
+
+  --anchor-color: var(--color-alpha);
+  --anchor-color-hover: var(--color-gamma);
+  --anchor-text-decoration: underline;
+  --anchor-text-decoration-hover: underline;
+
+  --paragraph-margin: 0 0 var(--global-margin) 0;
+
+  --heading-margin: var(--paragraph-margin);
+  --heading-font-weight: bold;
+}`}</code>
+              </pre>
             </li>
             <li>
               <strong>/styles/base.scss</strong>
+              <pre>
+                <code className="language-scss">{`@import "global/core";
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background: var(--body-background);
+  color: var(--body-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+}
+
+// Get rid of gap under images by making them display: inline-block; by default.
+img {
+  display: inline-block;
+  height: auto;
+  -ms-interpolation-mode: bicubic; /* stylelint-disable-line property-no-vendor-prefix */
+  max-width: 100%;
+}
+
+// Typography.
+a {
+  color: var(--anchor-color);
+  text-decoration: var(--anchor-text-decoration);
+
+  &:hover {
+    color: var(--anchor-color-hover);
+    text-decoration: var(--anchor-text-decoration-hover);
+  }
+}
+
+p {
+  margin: var(--paragraph-margin);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--heading-font-weight);
+  margin: var(--heading-margin);
+}
+
+address {
+  font-style: normal;
+}
+
+cite {
+  font-style: normal;
+}
+`}</code>
+              </pre>
             </li>
           </ul>
           <p>

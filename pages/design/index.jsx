@@ -11,6 +11,7 @@ import Headline from "../../components/molecules/Headline";
 // Library imports
 import prismjs from "prismjs";
 import "prismjs/themes/prism-coy.css";
+import Link from "next/link";
 require("prismjs/components/prism-markup");
 require("prismjs/components/prism-json");
 
@@ -48,15 +49,15 @@ export default function Design() {
   |  |- images/ ____________________________ # Theme images
   |  |- js/ ________________________________ # See below for details
   |  |- svg/ _______________________________ # Vector images that will be processed into icons
-  |- bin/ __________________________________ # WP-CLI and other scripts
-  |- node_modules/ _________________________ # npm modules
-  |- .editorconfig _________________________ # Editor config settings
-  |- .eslintrc _____________________________ # ESLint config settings
-  |- package.json __________________________ # npm package file`}</code>
+  |- .editorconfig _________________________ # Editor config settings`}</code>
           </pre>
           <p>
             The <code>styles</code> folder is described separately, below to
-            improve readability:
+            improve readability (see{" "}
+            <Link href="/css#aria-base-styles">
+              CSS Structure &amp; Base Styles
+            </Link>{" "}
+            for defaults):
           </p>
           <pre>
             <code className="language-markup">{`|- styles/ ___________________________________ # Non-component specific styles
@@ -69,17 +70,6 @@ export default function Design() {
 |       |- layout.module.scss ________________ # Layout helpers classes
 |    |- theme/ _______________________________ # Theme styles
 |       |- default.scss ______________________ # Default CSS theme variables`}</code>
-          </pre>
-          <p>
-            The <code>JS</code> folder is described separately, below to improve
-            readability:
-          </p>
-          <pre>
-            <code className="language-markup">{`|- assets/js/
-  |    |- admin/ ___________________________ # JS for the admin
-  |    |- frontend/ ________________________ # JS for the front end
-  |       |- components/ ___________________ # Component-level JS
-  |    |- shared/ __________________________ # Shared JS between the admin and front end`}</code>
           </pre>
           <Headline level={2} id="package-management" showAnchor>
             Dependencies and Package Management

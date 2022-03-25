@@ -85,11 +85,8 @@ export default function Page() {
 |- .env.local ________________________________ # Local environment variables
 |- .eslintrc.json ____________________________ # ESLint config settings
 |- .gitignore ________________________________ # Git ignore
-|- .next/
 |- next.config.js ____________________________ # Next application configuration
-|- package.json ______________________________ # npm package file
-|- package-lock.json _________________________ # npm package lock file
-|- README.md _________________________________ # Readme file`}</code>
+|- package.json ______________________________ # npm package file`}</code>
         </pre>
         <p>
           The <code>components</code> folder is described separately, below to
@@ -106,25 +103,25 @@ export default function Page() {
         <pre>
           <code className="language-markup">{`|- components/
   |    |- atoms/ _______________________________ # Atom components (base HTML elements)
-  |       |- Headline/
-  |          |- Headline.tsx ___________________ # Headline component
-  |          |- Headline.stories.jsx ___________ # Headline story definition
-  |          |- Headline.module.scss ___________ # Headline CSS scoped module
+  |       |- Button/
+  |          |- Button.tsx _____________________ # Button component
+  |          |- Button.stories.jsx _____________ # Button story definition
+  |          |- button.module.scss _____________ # Button CSS scoped module
   |    |- molecules/ ___________________________ # Module components (groups of atoms)
-  |       |- Grid/
-  |          |- Grid.tsx _______________________ # Grid component
-  |          |- Grid.stories.tsx _______________ # Grid story definition
-  |          |- Grid.module.scss _______________ # Grid CSS scoped module
   |    |- organisms/ ___________________________ # Organism components (groups of molecules)
-  |       |- Header/
-  |          |- Header.tsx _____________________ # Header component
-  |          |- Header.stories.tsx _____________ # Header story definition
-  |          |- Header.module.scss _____________ # Header CSS scoped module
+  |       |- SiteHeader/
+  |          |- SiteHeader.tsx _________________ # Header component
+  |          |- SiteHeader.stories.tsx _________ # Header story definition
+  |          |- site-header.module.scss ________ # Header CSS scoped module
+  |       |- SiteFooter/
+  |          |- SiteFooter.tsx _________________ # Footer component
+  |          |- SiteFooter.stories.tsx _________ # Footer story definition
+  |          |- site-footer.module.scss ________ # Footer CSS scoped module
+  |    |- svgs/ ________________________________ # SVG components
   |    |- templates/ ___________________________ # Template components (groups of organisms)
-  |       |- Default/
-  |          |- Default.jsx ____________________ # Default template component
-  |          |- Default.stories.jsx ____________ # Default template story definition
-  |          |- Default.module.scss ____________ # Default template CSS scoped module`}</code>
+  |       |- DefaultTemplate/
+  |          |- DefaultTemplate.jsx ____________ # Default template component
+  |          |- DefaultTemplate.stories.jsx ____ # Default template story definition`}</code>
         </pre>
         <p>
           The <code>styles</code> folder is described in{" "}
