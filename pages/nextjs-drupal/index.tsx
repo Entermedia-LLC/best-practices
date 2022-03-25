@@ -123,8 +123,8 @@ export default function Page() {
         <Headline level={4}>Enable Sass in styled-jsx</Headline>
         <p>
           Next.js has sass support is built-in, but this doesn&apos;t extend to
-          the styling inside styled-jsx tags. To extend this, you'll need to
-          install{" "}
+          the styling inside styled-jsx tags. To extend this, you&apos;ll need
+          to install{" "}
           <a
             href="https://www.npmjs.com/package/@styled-jsx/plugin-sass"
             target="_blank"
