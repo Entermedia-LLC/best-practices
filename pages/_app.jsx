@@ -1,9 +1,0 @@
-import "../styles/theme/default.scss";
-import "../styles/base.scss";
-
-export default function MyApp({ Component, pageProps }) {
-  // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout || ((page) => page);
-
-  return getLayout(<Component {...pageProps} />);
-}

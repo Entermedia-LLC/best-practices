@@ -1,0 +1,30 @@
+input: .
+output: .retype
+url: https://www.entermedia.com
+branding:
+  title: Entermedia
+  label: Development
+links:
+  - text: Home
+    link: /
+    icon: home
+  - text: Harvest
+    link: https://id.getharvest.com/harvest/sign_in?account_id=433768
+    icon: clock
+  - text: Jira
+    link: https://entermedia-atx.atlassian.net/jira
+    icon: list-unordered
+  - text: Contribute
+    link: https://github.com/Entermedia-LLC/best-practices
+    icon: mark-github
+footer:
+  copyright: "2022 &copy; Entermedia. All rights reserved."
+  links:
+    - text: Twitter
+      link: https://twitter.com/entermedia
+    - text: Facebook
+      link: https://www.facebook.com/entermedia.llc/
+    - text: LinkedIn
+      link: https://www.linkedin.com/company/entermedia-llc/
+    - text: GitHub
+      link: https://github.com/ENTERMEDIA
