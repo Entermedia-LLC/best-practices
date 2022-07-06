@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710439871000">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710443252787">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.3.0">
@@ -30,12 +30,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.3.0.710439871000" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.3.0.710443252787" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.3.0.710439871000" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.3.0.710443252787" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.3.0.710439871000" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.3.0.710439871000" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.3.0.710443252787" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.3.0.710443252787" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -256,6 +256,31 @@
         <span>Frameworks</span>
     </h2>
 </doc-anchor-target>
+<doc-anchor-target id="css-frameworks">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#css-frameworks">#</doc-anchor-trigger>
+        <span>CSS Frameworks</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Entermedia doesn&#x27;t use any CSS frameworks.</strong> Instead, we use a very simple library of common <code v-pre>.scss</code> files that reset the default CSS styles and define some variables containing the color palette and some other common styles, like standard fonts, text sizes, and shadows. There are many reasons we choose this approach, the most common being:</p>
+<blockquote>
+<p>CSS is not hard.</p>
+</blockquote>
+<p>The whole myth that CSS is difficult to learn is mostly a relic of the times when browsers were not fully standardized and we had to use quirks, hacks, and workarounds to make things work. Over the last decade, the situation has improved a lot; CSS is much more consistent and has wide support for a lot of useful features which make those hacks unnecessary. It’s definitely not perfect (hello, Safari), but it’s manageable.</p>
+<p>Some people argue that CSS is difficult because it has become too complex and bloated. “Should I use flex or grid layout? Whatever, I’ll just use this framework and it will solve the problem.” So they end up learning the framework and its naming conventions, full of cryptic abbreviations, such as px-lg-n5, while they might just learn to use the right CSS properties instead.</p>
+<p>Yes, CSS is complex, because over the years it has become a powerful and universal tool. In order to use a tool efficiently, you have to learn how it works. Unfortunately, CSS frameworks have the opposite effect — they teach us to copy and paste snippets of markup instead of actually understanding what’s going on.</p>
+<p>Lastly, CSS and HTML are the foundation of the web, and unlike your favorite framework, they are not going to become obsolete a year from now.</p>
+<doc-anchor-target id="further-reading">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#further-reading">#</doc-anchor-trigger>
+        <span>Further Reading</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><a href="https://aditya-dixit.medium.com/why-i-stopped-using-css-frameworks-should-you-too-89e9261a4cb2">Why I stopped using CSS Frameworks, Should you too?</a></li>
+<li><a href="https://medium.com/codex/why-i-no-longer-use-css-frameworks-be356f10b0c9">Why I No Longer Use CSS Frameworks</a></li>
+<li><a href="https://dev.to/developertharun/3-reasons-to-not-use-css-frameworks-like-bootstrap-and-materialize-1bh0">3 reasons to NOT use CSS Frameworks like Bootstrap and Materialize</a></li>
+</ul>
 <doc-anchor-target id="grids">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#grids">#</doc-anchor-trigger>
@@ -271,35 +296,6 @@
     </h3>
 </doc-anchor-target>
 <p><a href="https://necolas.github.io/normalize.css/">Normalize.css</a> is our primary tool for CSS resets.</p>
-<hr />
-<doc-anchor-target id="bem-methodology">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#bem-methodology">#</doc-anchor-trigger>
-        <span>BEM Methodology</span>
-    </h2>
-</doc-anchor-target>
-<p>Entermedia uses a variation of the <a href="http://getbem.com/introduction/">BEM methodology</a> (Block, Element, Modifier) for standarizing class names. BEM’s strict naming rules can be found <a href="http://getbem.com/naming/">here</a>.</p>
-<p>Example component using the BEM methodology:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-css"><code v-pre class="language-css">/* Block */
-.block {
-  display: block;
-}
-
-/* Element */
-.block__title {
-  font-weight: bold;
-}
-
-/* Block Modifier */
-.block--modifier {
-  background-color: yellow;
-}
-
-.block--modifier .block-title {
-  font-size: 2rem;
-}</code></pre>
-</doc-codeblock></div>
 <hr />
 <doc-anchor-target id="accessibility">
     <h2>
