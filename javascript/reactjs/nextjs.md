@@ -64,18 +64,4 @@ The following is Entermedia's standarized Next.js project structure setup:
 
 [!ref `styles` Directory Structure](/css/structure.md)
 
-### `components` Directory
-
-```bash
-|- components/
-|    |- atoms/ _______________________________ # Atom components (base HTML elements)
-|    |- molecules/ ___________________________ # Module components (groups of atoms)
-|    |- organisms/ ___________________________ # Organism components (groups of molecules)
-|       |- ExampleComponent/
-|          |- ExampleComponent.tsx
-|          |- ExampleComponent.stories.tsx
-|          |- example-component.module.scss
-|          |- example-component.drupal.ts ____ # Drupal-specific helper functions
-|    |- svgs/ ________________________________ # SVG components
-|    |- templates/ ___________________________ # Template components (groups of organisms)
-```
+[!ref `components` Directory Structure](/javascript/reactjs/components.md)
