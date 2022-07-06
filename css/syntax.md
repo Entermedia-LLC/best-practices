@@ -7,6 +7,35 @@ Syntax and formatting are keys to a maintainable project. By keeping our code st
 
 ---
 
+## BEM Methodology
+
+Entermedia uses a variation of the [BEM methodology](http://getbem.com/introduction/) (Block, Element, Modifier) for standarizing class names. BEM’s strict naming rules can be found [here](http://getbem.com/naming/).
+
+Example component using the BEM methodology:
+
+```css
+/* Block */
+.block {
+  display: block;
+}
+
+/* Element */
+.block__title {
+  font-weight: bold;
+}
+
+/* Block Modifier */
+.block--modifier {
+  background-color: yellow;
+}
+
+.block--modifier .block-title {
+  font-size: 2rem;
+}
+```
+
+---
+
 ## CSS Syntax
 
 CSS syntax is not strict and will accept a lot of variations, but for the sake of legibility and fast debugging, we follow basic code styles:

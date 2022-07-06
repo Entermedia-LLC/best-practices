@@ -12,6 +12,26 @@ Our websites are built mobile first, using performant CSS. Well-structured CSS y
 
 ## Frameworks
 
+### CSS Frameworks
+
+**Entermedia doesn't use any CSS frameworks.** Instead, we use a very simple library of common `.scss` files that reset the default CSS styles and define some variables containing the color palette and some other common styles, like standard fonts, text sizes, and shadows. There are many reasons we choose this approach, the most common being:
+
+> CSS is not hard.
+
+The whole myth that CSS is difficult to learn is mostly a relic of the times when browsers were not fully standardized and we had to use quirks, hacks, and workarounds to make things work. Over the last decade, the situation has improved a lot; CSS is much more consistent and has wide support for a lot of useful features which make those hacks unnecessary. It’s definitely not perfect (hello, Safari), but it’s manageable.
+
+Some people argue that CSS is difficult because it has become too complex and bloated. “Should I use flex or grid layout? Whatever, I’ll just use this framework and it will solve the problem.” So they end up learning the framework and its naming conventions, full of cryptic abbreviations, such as px-lg-n5, while they might just learn to use the right CSS properties instead.
+
+Yes, CSS is complex, because over the years it has become a powerful and universal tool. In order to use a tool efficiently, you have to learn how it works. Unfortunately, CSS frameworks have the opposite effect — they teach us to copy and paste snippets of markup instead of actually understanding what’s going on.
+
+Lastly, CSS and HTML are the foundation of the web, and unlike your favorite framework, they are not going to become obsolete a year from now.
+
+#### Further Reading
+
+- [Why I stopped using CSS Frameworks, Should you too?](https://aditya-dixit.medium.com/why-i-stopped-using-css-frameworks-should-you-too-89e9261a4cb2)
+- [Why I No Longer Use CSS Frameworks](https://medium.com/codex/why-i-no-longer-use-css-frameworks-be356f10b0c9)
+- [3 reasons to NOT use CSS Frameworks like Bootstrap and Materialize](https://dev.to/developertharun/3-reasons-to-not-use-css-frameworks-like-bootstrap-and-materialize-1bh0)
+
 ### Grids
 
 Our preference is not to use a 3rd party grid system, use your best judgement and keep them simple! All too often we are faced with a design that isn't built on a grid or purposefully breaks a loosely defined grid. Even if the designer had a grid in mind, there are often needs that require more creative solutions. For example: fixed-width content areas to accommodate advertising.
@@ -21,35 +41,6 @@ Sometimes a more complex grid system is warranted and leveraging a 3rd party lib
 ### CSS Reset
 
 [Normalize.css](https://necolas.github.io/normalize.css/) is our primary tool for CSS resets.
-
----
-
-## BEM Methodology
-
-Entermedia uses a variation of the [BEM methodology](http://getbem.com/introduction/) (Block, Element, Modifier) for standarizing class names. BEM’s strict naming rules can be found [here](http://getbem.com/naming/).
-
-Example component using the BEM methodology:
-
-```css
-/* Block */
-.block {
-  display: block;
-}
-
-/* Element */
-.block__title {
-  font-weight: bold;
-}
-
-/* Block Modifier */
-.block--modifier {
-  background-color: yellow;
-}
-
-.block--modifier .block-title {
-  font-size: 2rem;
-}
-```
 
 ---
 
