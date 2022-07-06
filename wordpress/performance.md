@@ -213,3 +213,101 @@ Although this plugin has a lot of benefits, it also has a couple of code design 
 Batcache does not cache logged in users (based on WordPress login cookies), so keep in mind the performance implications for subscription sites (like BuddyPress). Batcache also treats the query string as part of the URL which means the use of query strings for tracking campaigns (common with Google Analytics) can render page caching ineffective. Also beware that while WordPress VIP uses batcache, there are specific rules and conditions on VIP that do not apply to the open source version of the plugin.
 
 There are other popular page caching solutions such as the W3 Total Cache plugin, though we generally do not use them for a variety of reasons.
+
+### AJAX Endpoints
+
+AJAX stands for Asynchronous JavaScript and XML. Often, we use JavaScript on the client-side to ping endpoints for things like infinite scroll.
+
+WordPress [provides an API](https://developer.wordpress.org/plugins/javascript/ajax/) to register AJAX endpoints on `wp-admin/admin-ajax.php`. However, WordPress does not cache queries within the administration panel for obvious reasons. Therefore, if you send requests to an admin-ajax.php endpoint, you are bootstrapping WordPress and running un-cached queries. Used properly, this is totally fine. However, this can take down a website if used on the frontend.
+
+For this reason, front-facing endpoints should be written by using the [Rewrite Rules API](https://developer.wordpress.org/apis/handbook/rewrite/) and hooking early into the WordPress request process.
+
+Here is a simple example of how to structure your endpoints:
+
+```php
+/**
+ * Register a rewrite endpoint for the API.
+ */
+function prefix_add_api_endpoints() {
+	add_rewrite_tag( '%api_item_id%', '([0-9]+)' );
+	add_rewrite_rule( 'api/items/([0-9]+)/?', 'index.php?api_item_id=$matches[1]', 'top' );
+}
+add_action( 'init', 'prefix_add_api_endpoints' );
+
+/**
+ * Handle data (maybe) passed to the API endpoint.
+ */
+function prefix_do_api() {
+	global $wp_query;
+
+	$item_id = $wp_query->get( 'api_item_id' );
+
+	if ( ! empty( $item_id ) ) {
+		$response = array();
+
+		// Do stuff with $item_id
+
+		wp_send_json( $response );
+	}
+}
+add_action( 'template_redirect', 'prefix_do_api' );
+```
+
+---
+
+## Cache Remote Requests
+
+Requests made to third-parties, whether synchronous or asynchronous, should be cached. Not doing so will result in your site's load time depending on an unreliable third-party!
+
+Here is a quick code example for caching a third-party request:
+
+```php
+/**
+ * Retrieve posts from another blog and cache the response body.
+ *
+ * @return string Body of the response. Empty string if no body or incorrect parameter given.
+ */
+function prefix_get_posts_from_other_blog() {
+  if ( false === ( $posts = wp_cache_get( 'prefix_other_blog_posts' ) ) ) {
+    $request = wp_remote_get( ... );
+    $posts = wp_remote_retrieve_body( $request );
+
+    wp_cache_set( 'prefix_other_blog_posts', $posts, '', HOUR_IN_SECONDS );
+  }
+
+  return $posts;
+}
+```
+
+`prefix_get_posts_from_other_blog()` can be called to get posts from a third-party and will handle caching internally.
+
+---
+
+## Appropriate Data Storage
+
+Utilizing built-in WordPress APIs we can store data in a number of ways.
+
+We can store data using options, post meta, post types, object cache, and taxonomy terms.
+
+There are a number of performance considerations for each WordPress storage vehicle:
+
+- [Options](https://developer.wordpress.org/apis/handbook/options/) - The options API is a simple key-value storage system backed by a MySQL table. This API is meant to store things like settings and not variable amounts of data.
+
+  Site performance, especially on large websites, can be negatively affected by a large options table. It's recommended to regularly monitor and keep this table under 500 rows. The “autoload” field should only be set to ‘yes' for values that need to be loaded into memory on each page load.
+
+  Caching plugins can also be negatively affected by a large `wp_options` table. Popular caching plugins such as [Memcached](https://wordpress.org/plugins/memcached/) place a 1MB limit on individual values stored in cache. A large options table can easily exceed this limit, severely slowing each page load.
+
+- [Post Meta or Custom Fields](https://wordpress.org/support/article/custom-fields/) - Post meta is an API meant for storing information specific to a post. For example, if we had a custom post type, “Product”, “serial number” would be information appropriate for post meta. Because of this, it usually doesn't make sense to search for groups of posts based on post meta.
+- [Taxonomies and Terms](https://wordpress.org/support/article/taxonomies/) - Taxonomies are essentially groupings. If we have a classification that spans multiple posts, it is a good fit for a taxonomy term. For example, if we had a custom post type, “Car”, “Nissan” would be a good term since multiple cars are made by Nissan. Taxonomy terms can be efficiently searched across as opposed to post meta.
+- [Custom Post Types](https://wordpress.org/support/article/post-types/) - WordPress has the notion of “post types”. “Post” is a post type which can be confusing. We can register custom post types to store all sorts of interesting pieces of data. If we have a variable amount of data to store such as a product, a custom post type might be a good fit.
+- [Object Cache](https://developer.wordpress.org/reference/classes/wp_object_cache/) - See the Object Cache section above.
+
+---
+
+## Database Writes
+
+- Generally, do not write to the database on frontend pages as doing so can result in major performance issues and race conditions.
+- When multiple threads (or page requests) read or write to a shared location in memory and the order of those read or writes is unknown, you have what is known as a [race condition](https://en.wikipedia.org/wiki/Race_condition).
+- Store information in the correct place. See the “[Appropriate Data Storage](https://entermedia-llc.github.io/best-practices/wordpress#appropriate-data-storage)” section.
+- Certain options are “autoloaded” or put into the object cache on each page load. When [creating or updating options](https://developer.wordpress.org/apis/handbook/options/), you can pass an `$autoload` argument to `add_option()`. If your option is not going to get used often, it shouldn't be autoloaded. As of WordPress 4.2, `update_option()` supports configuring autoloading directly by passing an optional `$autoload` argument. Using this third parameter is preferable to using a combination of `delete_option()` and `add_option()` to disable autoloading for existing options.
+
