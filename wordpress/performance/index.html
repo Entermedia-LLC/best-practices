@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710429326440">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710433452936">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.3.0">
@@ -30,12 +30,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.3.0.710429326440" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.3.0.710433452936" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.710429326440" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.710433452936" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.710429326440" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.3.0.710429326440" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.710433452936" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.3.0.710433452936" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -479,6 +479,108 @@ function prefix_get_top_commented_posts( $force_refresh = false ) {
 </ul>
 <p>Batcache does not cache logged in users (based on WordPress login cookies), so keep in mind the performance implications for subscription sites (like BuddyPress). Batcache also treats the query string as part of the URL which means the use of query strings for tracking campaigns (common with Google Analytics) can render page caching ineffective. Also beware that while WordPress VIP uses batcache, there are specific rules and conditions on VIP that do not apply to the open source version of the plugin.</p>
 <p>There are other popular page caching solutions such as the W3 Total Cache plugin, though we generally do not use them for a variety of reasons.</p>
+<doc-anchor-target id="ajax-endpoints">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ajax-endpoints">#</doc-anchor-trigger>
+        <span>AJAX Endpoints</span>
+    </h3>
+</doc-anchor-target>
+<p>AJAX stands for Asynchronous JavaScript and XML. Often, we use JavaScript on the client-side to ping endpoints for things like infinite scroll.</p>
+<p>WordPress <a href="https://developer.wordpress.org/plugins/javascript/ajax/">provides an API</a> to register AJAX endpoints on <code v-pre>wp-admin/admin-ajax.php</code>. However, WordPress does not cache queries within the administration panel for obvious reasons. Therefore, if you send requests to an admin-ajax.php endpoint, you are bootstrapping WordPress and running un-cached queries. Used properly, this is totally fine. However, this can take down a website if used on the frontend.</p>
+<p>For this reason, front-facing endpoints should be written by using the <a href="https://developer.wordpress.org/apis/handbook/rewrite/">Rewrite Rules API</a> and hooking early into the WordPress request process.</p>
+<p>Here is a simple example of how to structure your endpoints:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-php"><code v-pre class="language-php">/**
+ * Register a rewrite endpoint for the API.
+ */
+function prefix_add_api_endpoints() {
+	add_rewrite_tag( '%api_item_id%', '([0-9]+)' );
+	add_rewrite_rule( 'api/items/([0-9]+)/?', 'index.php?api_item_id=$matches[1]', 'top' );
+}
+add_action( 'init', 'prefix_add_api_endpoints' );
+
+/**
+ * Handle data (maybe) passed to the API endpoint.
+ */
+function prefix_do_api() {
+	global $wp_query;
+
+	$item_id = $wp_query-&gt;get( 'api_item_id' );
+
+	if ( ! empty( $item_id ) ) {
+		$response = array();
+
+		// Do stuff with $item_id
+
+		wp_send_json( $response );
+	}
+}
+add_action( 'template_redirect', 'prefix_do_api' );</code></pre>
+</doc-codeblock></div>
+<hr />
+<doc-anchor-target id="cache-remote-requests">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cache-remote-requests">#</doc-anchor-trigger>
+        <span>Cache Remote Requests</span>
+    </h2>
+</doc-anchor-target>
+<p>Requests made to third-parties, whether synchronous or asynchronous, should be cached. Not doing so will result in your site&#x27;s load time depending on an unreliable third-party!</p>
+<p>Here is a quick code example for caching a third-party request:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-php"><code v-pre class="language-php">/**
+ * Retrieve posts from another blog and cache the response body.
+ *
+ * @return string Body of the response. Empty string if no body or incorrect parameter given.
+ */
+function prefix_get_posts_from_other_blog() {
+  if ( false === ( $posts = wp_cache_get( 'prefix_other_blog_posts' ) ) ) {
+    $request = wp_remote_get( ... );
+    $posts = wp_remote_retrieve_body( $request );
+
+    wp_cache_set( 'prefix_other_blog_posts', $posts, '', HOUR_IN_SECONDS );
+  }
+
+  return $posts;
+}</code></pre>
+</doc-codeblock></div>
+<p><code v-pre>prefix_get_posts_from_other_blog()</code> can be called to get posts from a third-party and will handle caching internally.</p>
+<hr />
+<doc-anchor-target id="appropriate-data-storage">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#appropriate-data-storage">#</doc-anchor-trigger>
+        <span>Appropriate Data Storage</span>
+    </h2>
+</doc-anchor-target>
+<p>Utilizing built-in WordPress APIs we can store data in a number of ways.</p>
+<p>We can store data using options, post meta, post types, object cache, and taxonomy terms.</p>
+<p>There are a number of performance considerations for each WordPress storage vehicle:</p>
+<ul>
+<li><p><a href="https://developer.wordpress.org/apis/handbook/options/">Options</a> - The options API is a simple key-value storage system backed by a MySQL table. This API is meant to store things like settings and not variable amounts of data.</p>
+<p>Site performance, especially on large websites, can be negatively affected by a large options table. It&#x27;s recommended to regularly monitor and keep this table under 500 rows. The “autoload” field should only be set to ‘yes&#x27; for values that need to be loaded into memory on each page load.</p>
+<p>Caching plugins can also be negatively affected by a large <code v-pre>wp_options</code> table. Popular caching plugins such as <a href="https://wordpress.org/plugins/memcached/">Memcached</a> place a 1MB limit on individual values stored in cache. A large options table can easily exceed this limit, severely slowing each page load.</p>
+</li>
+<li><p><a href="https://wordpress.org/support/article/custom-fields/">Post Meta or Custom Fields</a> - Post meta is an API meant for storing information specific to a post. For example, if we had a custom post type, “Product”, “serial number” would be information appropriate for post meta. Because of this, it usually doesn&#x27;t make sense to search for groups of posts based on post meta.</p>
+</li>
+<li><p><a href="https://wordpress.org/support/article/taxonomies/">Taxonomies and Terms</a> - Taxonomies are essentially groupings. If we have a classification that spans multiple posts, it is a good fit for a taxonomy term. For example, if we had a custom post type, “Car”, “Nissan” would be a good term since multiple cars are made by Nissan. Taxonomy terms can be efficiently searched across as opposed to post meta.</p>
+</li>
+<li><p><a href="https://wordpress.org/support/article/post-types/">Custom Post Types</a> - WordPress has the notion of “post types”. “Post” is a post type which can be confusing. We can register custom post types to store all sorts of interesting pieces of data. If we have a variable amount of data to store such as a product, a custom post type might be a good fit.</p>
+</li>
+<li><p><a href="https://developer.wordpress.org/reference/classes/wp_object_cache/">Object Cache</a> - See the Object Cache section above.</p>
+</li>
+</ul>
+<hr />
+<doc-anchor-target id="database-writes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#database-writes">#</doc-anchor-trigger>
+        <span>Database Writes</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Generally, do not write to the database on frontend pages as doing so can result in major performance issues and race conditions.</li>
+<li>When multiple threads (or page requests) read or write to a shared location in memory and the order of those read or writes is unknown, you have what is known as a <a href="https://en.wikipedia.org/wiki/Race_condition">race condition</a>.</li>
+<li>Store information in the correct place. See the “<a href="https://entermedia-llc.github.io/best-practices/wordpress#appropriate-data-storage">Appropriate Data Storage</a>” section.</li>
+<li>Certain options are “autoloaded” or put into the object cache on each page load. When <a href="https://developer.wordpress.org/apis/handbook/options/">creating or updating options</a>, you can pass an <code v-pre>$autoload</code> argument to <code v-pre>add_option()</code>. If your option is not going to get used often, it shouldn&#x27;t be autoloaded. As of WordPress 4.2, <code v-pre>update_option()</code> supports configuring autoloading directly by passing an optional <code v-pre>$autoload</code> argument. Using this third parameter is preferable to using a combination of <code v-pre>delete_option()</code> and <code v-pre>add_option()</code> to disable autoloading for existing options.</li>
+</ul>
 
                                 
                                 <!-- Required only on API pages -->
@@ -488,20 +590,20 @@ function prefix_get_top_commented_posts( $force_refresh = false ) {
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../wordpress/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../wordpress/internationalization/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Word​Press</span>
+                                                <span class="block mt-1">Internationalization</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../wordpress/tools/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../wordpress/security/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Tools & Resources</span>
+                                                <span class="block mt-1">Security</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
