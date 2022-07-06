@@ -9,24 +9,21 @@
     <meta name="generator" content="Retype 2.3.0">
 
     <!-- Primary Meta Tags -->
-    <title>SVG</title>
-    <meta name="title" content="SVG">
-    <meta name="description" content="SVG has become a prevalent means for displaying rich vector graphics." />
+    <title>Drupal</title>
+    <meta name="title" content="Drupal">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://www.entermedia.com/svg/" />
+    <link rel="canonical" href="https://www.entermedia.com/drupal/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.entermedia.com/svg/">
-    <meta property="og:title" content="SVG">
-    <meta property="og:description" content="SVG has become a prevalent means for displaying rich vector graphics.">
+    <meta property="og:url" content="https://www.entermedia.com/drupal/">
+    <meta property="og:title" content="Drupal">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.entermedia.com/svg/">
-    <meta property="twitter:title" content="SVG">
-    <meta property="twitter:description" content="SVG has become a prevalent means for displaying rich vector graphics.">
+    <meta property="twitter:url" content="https://www.entermedia.com/drupal/">
+    <meta property="twitter:title" content="Drupal">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -35,7 +32,6 @@
     <script type="text/javascript" src="../resources/js/config.js?v=2.3.0.710439871000" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
     <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.3.0.710439871000" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.3.0.710439871000" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -241,92 +237,12 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="svg" class="break-words">
+<doc-anchor-target id="drupal" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#svg">#</doc-anchor-trigger>
-        <span>SVG</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#drupal">#</doc-anchor-trigger>
+        <span>Drupal</span>
     </h1>
 </doc-anchor-target>
-<p>SVG has become a prevalent means for displaying rich vector graphics. SVG images are great for graphics with well-defined lines and simple color palettes that can be defined algorithmically, e.g. logos, iconography, and illustrations. Here are a few known benefits of SVG:</p>
-<ul>
-<li><strong>Scalability</strong> - They look great on retina displays and at any size, i.e. they&#x27;re resolution independent.</li>
-<li><strong>File Size</strong> - Small file size and compresses well.</li>
-<li><strong>Styling</strong> - Manipulate fill, stroke, and even animate.</li>
-</ul>
-<p>Be mindful that SVGs have potential limitations as well:</p>
-<ul>
-<li>Adding unvetted SVG graphics to a page has the potential to introduce a security vulnerability. This is why WordPress does not allow uploading of SVG by default. Read: <a href="https://bjornjohansen.no/svg-in-wordpress">SVG uploads in WordPress (the Inconvenient Truth)</a> for more information.</li>
-<li>SVG is <strong>not</strong> ideal for photographic images or images with complex visual data. In this case, raster formats (JPG, PNG, GIF) will be a better choice.</li>
-<li>Raster images should not be converted to SVG. It will likely result in a raster image being embedded within the SVG document, which will not provide the same affordances (i.e. - CSS manipulation) as a genuine SVG. For further reading on vector vs. raster formats, and when to use each: <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Adding_vector_graphics_to_the_Web">Adding vector graphics to the Web</a>.</li>
-</ul>
-<hr />
-<doc-anchor-target id="svg-sprites">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#svg-sprites">#</doc-anchor-trigger>
-        <span>SVG Sprites</span>
-    </h2>
-</doc-anchor-target>
-<p>Combining SVG images in a single file (usually called <code v-pre>svg-defs.svg</code>) has the benefit of helping limit HTTP requests within a document that contains multiple icons. An SVG sprite file can be embedded within a document and referenced within the template source with a <code v-pre>&lt;use&gt;</code> element. The creation of this icon system should be automated through your build process. Read <a href="https://css-tricks.com/svg-sprites-use-better-icon-fonts/">Icon Systems with SVG Sprites</a> for more information.</p>
-<hr />
-<doc-anchor-target id="svg-embedded-in-html">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#svg-embedded-in-html">#</doc-anchor-trigger>
-        <span>SVG embedded in HTML</span>
-    </h2>
-</doc-anchor-target>
-<p>When placing an SVG in markup (i.e. inline) be sure to use the following guidelines:</p>
-<ul>
-<li>If the SVG is purely <strong>decorative</strong>
-<ul>
-<li>An empty alt=&quot;&quot; can be used: <code v-pre>&lt;img alt=&quot;&quot;&gt;,</code> or</li>
-<li>Use ARIA attributes to hide the element from assistive technologies: <code v-pre>&lt;svg aria-hidden=&quot;true&quot;&gt;</code></li>
-</ul>
-</li>
-<li>If the SVG is <strong>meaningful</strong> then use <code v-pre>&lt;title&gt;</code> and possibly even <code v-pre>&lt;desc&gt;</code> or <code v-pre>aria-label</code> to describe the graphic. Also, be sure to add an <code v-pre>id</code> to each element, and appropriate ARIA to overcome a known bug in <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=231654&amp;q=SVG%20%20title%20attribute&amp;colspec=ID%20Pri%20M%20Stars%20ReleaseBlock%20Component%20Status%20Owner%20Summary%20OS%20Modified">Chrome</a> and <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1151648">Firefox</a>.
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-markup"><code v-pre class="language-markup">&lt;!-- role=&quot;img&quot; to exclude image from being traversed by certain browsers w/ group role --&gt;
-&lt;svg role=&quot;img&quot; aria-labelledby=&quot;uniqueTitleID uniqueDescID&quot;&gt;
-  &lt;title id=&quot;uniqueTitleID&quot;&gt;The Title&lt;/title&gt;
-  &lt;desc id=&quot;uniqueDescID&quot;&gt;Description goes here...&lt;/desc&gt;
-&lt;/svg&gt;</code></pre>
-</doc-codeblock></div>
-</li>
-<li>Use <code v-pre>aria-label</code> if the SVG is linked and has no supporting text.
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-markup"><code v-pre class="language-markup">&lt;a
-  href=&quot;http://twitter.com/entermedia&quot;
-  aria-label=&quot;Follow Entermedia on Twitter&quot;
-&gt;
-  &lt;svg&gt;&lt;use xlink:href=&quot;#icon-twitter&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
-&lt;/a&gt;</code></pre>
-</doc-codeblock></div>
-</li>
-<li>Use <a href="https://css-tricks.com/accessible-svgs/#article-header-id-20">media queries to provide fallbacks for Windows and High Contrast Mode</a>.</li>
-</ul>
-<hr />
-<doc-anchor-target id="optimization">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#optimization">#</doc-anchor-trigger>
-        <span>Optimization</span>
-    </h2>
-</doc-anchor-target>
-<p>Many tools for creating SVG are notorious for including unnecessary markup. We recommend running all SVG through <a href="https://jakearchibald.github.io/svgomg/">SVGO(MG)</a> or using tooling, like <a href="https://github.com/ben-eb/gulp-svgmin">gulp-svgmin</a>.</p>
-<hr />
-<doc-anchor-target id="further-reading">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#further-reading">#</doc-anchor-trigger>
-        <span>Further Reading</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial">SVG Tutorial</a></li>
-<li><a href="https://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/">An Overview of SVG Sprite Creation Techniques</a></li>
-<li><a href="https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/">Using ARIA to enhance SVG accessibility</a></li>
-<li><a href="https://www.24a11y.com/2018/accessible-svg-icons-with-inline-sprites/">Accessible SVG Icons with Inline Sprites 24 Accessibility</a></li>
-<li><a href="https://weboverhauls.github.io/demos/svg/">Accessible SVG test page</a></li>
-<li><a href="https://www.deque.com/blog/creating-accessible-svgs/">Creating Accessible SVGs</a></li>
-<li><a href="https://css-tricks.com/accessible-svgs/">Accessible SVGs</a></li>
-</ul>
 
                                 
                                 <!-- Required only on API pages -->
@@ -336,20 +252,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../php/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../wordpress/tools/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">PHP</span>
+                                                <span class="block mt-1">Tools & Resources</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../wordpress/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../server/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Word​Press</span>
+                                                <span class="block mt-1">Servers & Hosting</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -405,6 +321,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "SVG", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Drupal", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>
