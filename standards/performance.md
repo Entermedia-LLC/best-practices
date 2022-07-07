@@ -145,3 +145,46 @@ The time it takes the browser to fetch resources like images or videos can also 
 - Make sure that images are being served over a CDN, you’re serving formats like WebP or AVIF and you’re using responsive images techniques.
 - For images that find themselves in Hero components, `preload` the image resource ahead of time. For [responsive images](https://web.dev/preload-responsive-images/) you will need to add the `imagesrcset` and `imagesizes` attributes: `<link rel="preload" as="image" imagesrcset=" image-400.jpg 400w, image-800.jpg 800w, image-1600.jpg 1600w" imagesizes="100vw" />`.
 - Check with Systems or Web Engineering that the server is utilizing compression algorithms like Gzip or Brotli.
+
+### Cumulative Layout Shift
+
+Cumulative Layout Shift measures the **visual stability** of a web page. CLS can be an elusive metric to get right as elements targeted as having a layout shift are often not the root cause. By ensuring limited layout shifts on the page, visitors will be presented with a smooth and delightful user experience.
+
+> A CLS score of 0.1 or less is considered to be a conducive measurement for good user experience.
+
+It’s important to understand that the CLS metric does not just measure one offending element. The CLS score reported is the sum total of all layout shifts on the page. A layout shift occurs any time a visible element (i.e above the fold), changes its position from one rendered frame to the next.
+
+To be clear, a layout shift is only considered a problem if it’s **unexpected** - so a shift in an elements position that was triggered on purpose by a user is acceptable.
+
+It’s useful to know that a layout shift can be caused by the following events:
+
+- A change in the position of a DOM element
+- A change in size of the dimensions of a DOM element
+- Inserting or removing DOM elements through JavaScript
+- CSS / JS animations that would trigger Reflow (recalculation of layout)
+
+Considering the above, it would be plausible that nearby DOM elements could then change their position and dimensions based on another elements movement.
+
+#### How to diagnose Cumulative Layout Shift
+
+The quickest way to diagnose an element that has undergone a layout shift is by following these steps:
+
+1. Open **Google Chrome**
+2. Open **Chrome DevTools**
+3. Select the **Performance** Tab
+4. Check the **Web Vitals** checkbox
+5. Click the **Reload** button or hit `⌘ ⇧ E` shortcut
+6. Scroll down to **Experience**
+7. If there is a Layout Shift on the page, Chrome will add a red bar with “Layout Shift” as the label.
+8. In **Summary** scroll down to the “Moved from” / “Moved to” section.
+9. Hover over each “Location” / “Size” label and Chrome will highlight the offending element on the page.
+
+As an alternative, you can also diagnose Layout Shifts on the page by:
+
+1. Open **Google Chrome**
+2. Open **Chrome DevTools**
+3. Hit ⌘ ⇧ P to open the actions console.
+4. Start typing “Rendering” until the prompt suggests: “Show Rendering”, hit Enter.
+5. A dialog will appear at the bottom of the DevTools window.
+6. Check “Layout Shift Regions” and refresh the page.
+7. All elements that have been identified as triggering a layout shift will be highlighted.

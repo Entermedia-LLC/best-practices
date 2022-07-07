@@ -41,3 +41,44 @@ Instead of sessions, use cookies or client-side storage APIs if possible. In add
 If sessions must be used, create them conservatively. Don’t create sessions for every visitor. Limit sessions to the smallest group that needs them: logged-in editors and admins, or visitors using a particular feature.
 
 Sessions should never be stored in the database. This introduces extra data into a storage system that’s not meant for that volume. Database session libraries also rely on PHP code which can’t match the performance of PHP’s native session handlers. PHP extensions for Memcache and Redis allow sessions to be stored in these in-memory datastores and are a good solution for sessions when multiple webservers are present.
+
+---
+
+## Avoid Heredoc and Nowdoc
+
+PHP’s **doc syntaxes** construct large strings of HTML within code, without the hassle of concatenating a bunch of one-liners. They tend to be easier to read, and are easier for inexperienced front-end developers to edit without accidentally breaking PHP code.
+
+```php
+$y = <<<JOKE
+I told my doctor
+"it hurts when I move my arm like this".
+He said, "<em>then stop moving it like that!</em>"
+JOKE;
+```
+
+However, heredoc/nowdoc make it impossible to practice **late escaping**:
+
+```php
+// Early escaping
+$a = esc_attr( $my_class_name );
+
+// Something naughty could happen to the string after early escaping
+$a .= 'something naughty';
+
+// Entermedia prefer to escape right at the point of output, which would be here
+echo <<<HTML
+<div class="test {$a}">test</div>
+HTML;
+```
+
+As convenient as they are, engineers should avoid heredoc/nowdoc syntax and use traditional string concatenation & echoing instead. The HTML isn’t as easy to read. But, we can be sure escaping happens right at the point of output, regardless of what happened to a variable beforehand.
+
+```php
+// Something naughty could happen to the string...
+$my_class_name .= 'something naughty';
+
+// But it doesn't matter if we're late escaping
+echo '<div class="test ' . esc_attr( $my_class_name ) . '">test</div>';
+```
+
+Even better, [use WordPress’ get_template_part() function as a basic template engine](https://developer.wordpress.org/reference/functions/get_template_part/#comment-2349). Make your template file consist mostly of HTML, with `<?php ?>` tags just where you need to escape and output. The resulting file will be as readable as a heredoc/nowdoc block, but can still perform late escaping within the template itself.

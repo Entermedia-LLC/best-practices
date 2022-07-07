@@ -7,6 +7,42 @@ Security in the context of web development is a huge topic. This section only ad
 
 ---
 
+## General Rules
+
+### Always disallow plugin/theme edits from the admin
+
+Always `define( 'DISALLOW_FILE_MODS', true );`. Code changes such as plugin updates should be done from the repository for easier code maintenance and constancy. This also prevents an attacker that might have gained admin access from making a code change by uploading a plugin.
+
+### Always remove unused code
+
+Always remove unused code. Unused WordPress plugins and themes can provide a vector for attack. Also remove as much unused code as possible and regularly audit the code base for unused WordPress plugins.
+
+### Regularly scan your codebase for vulnerable packages
+
+Build a process to regularly scan your codebase against known vulnerabilities. You can use tools like [https://wpvulndb.com/](https://wpvulndb.com/) to scan for plugins or themes that could be an issue.
+
+### Disable XML-RPC
+
+Always disable XML-RPC since it can be used for brute force or DDoS attacks. XML_RPC is an older and mostly unused feature. Perfer the JSON API when available.
+
+### WordPress updates
+
+Always keep WordPress up to date. WordPress core minor versions should be installed as soon as possible. WordPress Core offers security updates and “minor” updates to older versions of WordPress. Often bad actors will scan the web for these vulnerabilities given the WP’s popularity. This means it’s very important to update as soon as possible.
+
+### Don’t use ‘admin’ as the default admin username.
+
+Don’t use usernames like `admin` since it is easily guessable. Usernames like this make brute forcing much easier.
+
+### Disable User Enumeration
+
+Always consider the information available on the JSON API about the users of the site. WordPress users data can be accessed via WordPress JSON API. This could expose something like usernames that could then be used in a brute force attempt or email addresses to be used to try to phish an user.
+
+### Managing API Keys
+
+Where possible, keys should be stored either in the `wp_options` table, or as a constant defined in the `wp-config.php`, never within the application source code. Storing keys in these locations reduce the chance of accidentally pushing these keys into an upstream version control repository. Additionally, these locations increase discoverability during routine security audits or when rotating keys.
+
+---
+
 ## Input Validation and Sanitization
 
 To validate is to ensure the data you’ve requested of the user matches what they’ve submitted. Sanitization is a broader approach ensuring data conforms to certain standards such as an integer or HTML-less text. The difference between validating and sanitizing data can be subtle at times and context-dependent.
