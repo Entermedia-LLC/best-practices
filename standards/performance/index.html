@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710443252787">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710525030243">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.3.0">
@@ -30,11 +30,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.3.0.710443252787" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.3.0.710525030243" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.710443252787" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.710525030243" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.710443252787" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.710525030243" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -445,6 +445,54 @@
 <li>For images that find themselves in Hero components, <code v-pre>preload</code> the image resource ahead of time. For <a href="https://web.dev/preload-responsive-images/">responsive images</a> you will need to add the <code v-pre>imagesrcset</code> and <code v-pre>imagesizes</code> attributes: <code v-pre>&lt;link rel=&quot;preload&quot; as=&quot;image&quot; imagesrcset=&quot; image-400.jpg 400w, image-800.jpg 800w, image-1600.jpg 1600w&quot; imagesizes=&quot;100vw&quot; /&gt;</code>.</li>
 <li>Check with Systems or Web Engineering that the server is utilizing compression algorithms like Gzip or Brotli.</li>
 </ul>
+<doc-anchor-target id="cumulative-layout-shift">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cumulative-layout-shift">#</doc-anchor-trigger>
+        <span>Cumulative Layout Shift</span>
+    </h3>
+</doc-anchor-target>
+<p>Cumulative Layout Shift measures the <strong>visual stability</strong> of a web page. CLS can be an elusive metric to get right as elements targeted as having a layout shift are often not the root cause. By ensuring limited layout shifts on the page, visitors will be presented with a smooth and delightful user experience.</p>
+<blockquote>
+<p>A CLS score of 0.1 or less is considered to be a conducive measurement for good user experience.</p>
+</blockquote>
+<p>It’s important to understand that the CLS metric does not just measure one offending element. The CLS score reported is the sum total of all layout shifts on the page. A layout shift occurs any time a visible element (i.e above the fold), changes its position from one rendered frame to the next.</p>
+<p>To be clear, a layout shift is only considered a problem if it’s <strong>unexpected</strong> - so a shift in an elements position that was triggered on purpose by a user is acceptable.</p>
+<p>It’s useful to know that a layout shift can be caused by the following events:</p>
+<ul>
+<li>A change in the position of a DOM element</li>
+<li>A change in size of the dimensions of a DOM element</li>
+<li>Inserting or removing DOM elements through JavaScript</li>
+<li>CSS / JS animations that would trigger Reflow (recalculation of layout)</li>
+</ul>
+<p>Considering the above, it would be plausible that nearby DOM elements could then change their position and dimensions based on another elements movement.</p>
+<doc-anchor-target id="how-to-diagnose-cumulative-layout-shift">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-diagnose-cumulative-layout-shift">#</doc-anchor-trigger>
+        <span>How to diagnose Cumulative Layout Shift</span>
+    </h4>
+</doc-anchor-target>
+<p>The quickest way to diagnose an element that has undergone a layout shift is by following these steps:</p>
+<ol>
+<li>Open <strong>Google Chrome</strong></li>
+<li>Open <strong>Chrome DevTools</strong></li>
+<li>Select the <strong>Performance</strong> Tab</li>
+<li>Check the <strong>Web Vitals</strong> checkbox</li>
+<li>Click the <strong>Reload</strong> button or hit <code v-pre>⌘ ⇧ E</code> shortcut</li>
+<li>Scroll down to <strong>Experience</strong></li>
+<li>If there is a Layout Shift on the page, Chrome will add a red bar with “Layout Shift” as the label.</li>
+<li>In <strong>Summary</strong> scroll down to the “Moved from” / “Moved to” section.</li>
+<li>Hover over each “Location” / “Size” label and Chrome will highlight the offending element on the page.</li>
+</ol>
+<p>As an alternative, you can also diagnose Layout Shifts on the page by:</p>
+<ol>
+<li>Open <strong>Google Chrome</strong></li>
+<li>Open <strong>Chrome DevTools</strong></li>
+<li>Hit ⌘ ⇧ P to open the actions console.</li>
+<li>Start typing “Rendering” until the prompt suggests: “Show Rendering”, hit Enter.</li>
+<li>A dialog will appear at the bottom of the DevTools window.</li>
+<li>Check “Layout Shift Regions” and refresh the page.</li>
+<li>All elements that have been identified as triggering a layout shift will be highlighted.</li>
+</ol>
 
                                 
                                 <!-- Required only on API pages -->

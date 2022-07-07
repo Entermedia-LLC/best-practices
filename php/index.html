@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710443252787">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710525030243">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.3.0">
@@ -30,12 +30,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.3.0.710443252787" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.3.0.710525030243" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.3.0.710443252787" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.3.0.710525030243" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.3.0.710443252787" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.3.0.710443252787" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.3.0.710525030243" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.3.0.710525030243" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -290,6 +290,43 @@ if ( isset( $array['bar'] ) ) {
 <p>Instead of sessions, use cookies or client-side storage APIs if possible. In addition to keeping this data off the web servers, they empower site visitors to view and delete the data tied to their activity. Systems Engineers can configure full-page caches to ignore custom cookies so they don’t interfere with caching.</p>
 <p>If sessions must be used, create them conservatively. Don’t create sessions for every visitor. Limit sessions to the smallest group that needs them: logged-in editors and admins, or visitors using a particular feature.</p>
 <p>Sessions should never be stored in the database. This introduces extra data into a storage system that’s not meant for that volume. Database session libraries also rely on PHP code which can’t match the performance of PHP’s native session handlers. PHP extensions for Memcache and Redis allow sessions to be stored in these in-memory datastores and are a good solution for sessions when multiple webservers are present.</p>
+<hr />
+<doc-anchor-target id="avoid-heredoc-and-nowdoc">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#avoid-heredoc-and-nowdoc">#</doc-anchor-trigger>
+        <span>Avoid Heredoc and Nowdoc</span>
+    </h2>
+</doc-anchor-target>
+<p>PHP’s <strong>doc syntaxes</strong> construct large strings of HTML within code, without the hassle of concatenating a bunch of one-liners. They tend to be easier to read, and are easier for inexperienced front-end developers to edit without accidentally breaking PHP code.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-php"><code v-pre class="language-php">$y = &lt;&lt;&lt;JOKE
+I told my doctor
+&quot;it hurts when I move my arm like this&quot;.
+He said, &quot;&lt;em&gt;then stop moving it like that!&lt;/em&gt;&quot;
+JOKE;</code></pre>
+</doc-codeblock></div>
+<p>However, heredoc/nowdoc make it impossible to practice <strong>late escaping</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-php"><code v-pre class="language-php">// Early escaping
+$a = esc_attr( $my_class_name );
+
+// Something naughty could happen to the string after early escaping
+$a .= 'something naughty';
+
+// Entermedia prefer to escape right at the point of output, which would be here
+echo &lt;&lt;&lt;HTML
+&lt;div class=&quot;test {$a}&quot;&gt;test&lt;/div&gt;
+HTML;</code></pre>
+</doc-codeblock></div>
+<p>As convenient as they are, engineers should avoid heredoc/nowdoc syntax and use traditional string concatenation &amp; echoing instead. The HTML isn’t as easy to read. But, we can be sure escaping happens right at the point of output, regardless of what happened to a variable beforehand.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-php"><code v-pre class="language-php">// Something naughty could happen to the string...
+$my_class_name .= 'something naughty';
+
+// But it doesn't matter if we're late escaping
+echo '&lt;div class=&quot;test ' . esc_attr( $my_class_name ) . '&quot;&gt;test&lt;/div&gt;';</code></pre>
+</doc-codeblock></div>
+<p>Even better, <a href="https://developer.wordpress.org/reference/functions/get_template_part/#comment-2349">use WordPress’ get_template_part() function as a basic template engine</a>. Make your template file consist mostly of HTML, with <code v-pre>&lt;?php ?&gt;</code> tags just where you need to escape and output. The resulting file will be as readable as a heredoc/nowdoc block, but can still perform late escaping within the template itself.</p>
 
                                 
                                 <!-- Required only on API pages -->
