@@ -91,6 +91,7 @@ CSS syntax is not strict and will accept a lot of variations, but for the sake o
 
 - Try to use lowercase for all values, except for font names
 - Zero values don't need units
+- Always add `0` to units smaller than 1, i.e. `0.5rem`
 - End all declarations with a semi-colon, even the last one, to avoid errors
 - Use double quotes instead of single quotes
 
@@ -100,6 +101,7 @@ section {
   background-color: #FFFFFF;
   font-family: 'Times New Roman', serif;
   margin: 0px
+  padding: .5rem;
 }
 ```
 !!!
@@ -110,6 +112,7 @@ section {
   background-color: #fff;
   font-family: "Times New Roman", serif;
   margin: 0;
+  padding: 0.5rem;
 }
 ```
 !!!
