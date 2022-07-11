@@ -9,6 +9,12 @@ The purpose of this document is to help guide you through working with a potenti
 
 ---
 
+## Coding Standards
+
+- Avoid using `React.FC`, see [Remove React.FC from Typescript template](https://github.com/facebook/create-react-app/pull/8177) for more information
+
+---
+
 ## Useful Libraries
 
 The following is a list of primary React libraries used by Entermedia:

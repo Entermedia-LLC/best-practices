@@ -26,7 +26,7 @@ The editor config file with standard settings for commonly used files is shown b
 root = true
 
 [*]
-indent_style = space
+indent_style = tab
 indent_size = 2
 trim_trailing_whitespace = true
 

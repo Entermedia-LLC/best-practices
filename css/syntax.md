@@ -34,6 +34,37 @@ Example component using the BEM methodology:
 }
 ```
 
+### Coding Standards
+
+- Class names should only include one element level.
+  !!!danger Don't
+  ```css
+  .block__title__subtitle {}
+  .block__media__image {}
+  ```
+  !!!
+
+  !!!success Do
+  ```css
+  .block__title {}
+  .block__subtitle {}
+  .block__media {}
+  .block__media-image {}
+  ```
+  !!!
+- Avoid camelcase class names.
+  !!!danger Don't
+  ```css
+  .block__mediaImage {}
+  ```
+  !!!
+
+  !!!success Do
+  ```css
+  .block__media-image {}
+  ```
+  !!!
+
 ---
 
 ## CSS Syntax
