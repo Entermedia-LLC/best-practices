@@ -14,6 +14,33 @@ Progressive enhancement means building a website that is robust, fault tolerant,
 
 ---
 
+## Editor Config
+
+Every project should include an Editor Config file, `.editorconfig` in the root directory. This file will define and maintain consistent coding styles between the different IDEs and Code Editors used on the project.
+
+All developers should install the corresponding Editor Config plugin for their preferred development editor from [EditorConfig.org](http://editorconfig.org/#download).
+
+The editor config file with standard settings for commonly used files is shown below.
+
+```bash
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+
+[*.{php,js,css,scss}]
+end_of_line = lf
+insert_final_newline = true
+indent_style = tab
+indent_size = 2
+```
+
+Developers may extend and/or customize these rules as new file formats are added to the project.
+
+---
+
 ## Avoid Cookies
 
 Safari browser’s Intelligent Tracking Prevention (ITP) 2.1 sets the expiration period at 7 days for all first-party cookies set by in-line (or tag management solution injected) vendor JavaScript libraries like Google Analytics’ analytics.js.
