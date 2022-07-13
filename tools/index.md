@@ -11,6 +11,7 @@ The following are tools & resources we use at Entermedia. This list will grow an
 ---
 
 - [Leasot](https://github.com/pgilad/leasot) - A command line tool to intelligently parse and output TODOs and FIXMEs from comments in your files. It allows you to easily extract, collect, and report TODOs and FIXMEs in your code using regex in order to extract your todos from comments.
+- [Prettier](https://prettier.io/) - An an opinionated code formatter with [editor integration](https://prettier.io/docs/en/editors.html). **Recommend on all projects.**
 
 ---
 
