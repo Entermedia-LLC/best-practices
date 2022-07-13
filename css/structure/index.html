@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710885188336">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.711045808595">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.3.0">
@@ -30,12 +30,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.3.0.710885188336" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.3.0.711045808595" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.710885188336" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.711045808595" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.710885188336" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.3.0.710885188336" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.711045808595" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -247,22 +246,8 @@
         <span>Directory Structure</span>
     </h1>
 </doc-anchor-target>
-<p>File structure unity across projects improves engineering efficiency and maintainability. We believe the following structure is segmented enough to keep projects organized—and thus maintainable—but also flexible and open ended enough to enable engineers to comfortably modify as necessary. All projects should derive from this structure:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">CSS Directory Structure</div>
-<pre class="language-bash"><code v-pre class="language-bash">|- styles/ ___________________________________ # Non-component specific styles
-|    |- base.scss ____________________________ # Base HTML element styles
-|    |- global/ ______________________________ # Sass variables, mixins &amp; functions
-|       |- _core.scss ________________________ # Includes all required core files
-|       |- _mixins.scss ______________________ # Sass mixins
-|       |- _variables.scss ___________________ # Sass variables
-|    |- helpers/ _____________________________ # Helper classes
-|       |- layout.module.scss ________________ # Layout helpers classes
-|       |- typography.module.scss ____________ # Typography helpers classes
-|    |- theme/ _______________________________ # Theme styles
-|       |- light.scss ______________________ # Light CSS theme variables
-|       |- dark.scss ______________________ # Light CSS theme variables</code></pre>
-</doc-codeblock></div>
+<p>File structure unity across projects improves engineering efficiency and maintainability. We believe the following structure is segmented enough to keep projects organized—and thus maintainable—but also flexible and open ended enough to enable engineers to comfortably modify as necessary.</p>
+<p>Entermedia has created a <a href="https://github.com/Entermedia-LLC/scss">starter CSS directory template</a> that all projects should begin with.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -341,6 +326,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Directory Structure", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Directory Structure", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

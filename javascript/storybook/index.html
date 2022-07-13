@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.710885188336">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.711045808595">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.3.0">
@@ -30,11 +30,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.3.0.710885188336" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.3.0.711045808595" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.710885188336" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.3.0.711045808595" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.710885188336" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.3.0.711045808595" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.3.0.711045808595" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -247,6 +248,146 @@
     </h1>
 </doc-anchor-target>
 <p>Entermedia uses <a href="https://entermedia-llc.github.io/best-practices/nextjs-drupal">Storybook</a> for building UI components and pages in isolation, allowing for streamline UI development, testing, and documentation.</p>
+<hr />
+<doc-anchor-target id="installation">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installation">#</doc-anchor-trigger>
+        <span>Installation</span>
+    </h2>
+</doc-anchor-target>
+<p>Storybook has an initializer that does the heavy lifting for us: <code v-pre>npx sb init</code>. This script detects your project type and adapts to it. But we can also give it a few hints.</p>
+<p>Next.js v11 and later use Webpack 5. We can also use Webpack 5 in Storybook to get improved integration and performance. To do that we use the builder option and run this command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">npx sb init --builder webpack5</code></pre>
+</doc-codeblock></div>
+<p>Read more about the <a href="https://storybook.js.org/blog/storybook-for-webpack-5/">benefits of Storybook&#x27;s Webpack 5 builder</a>.</p>
+<doc-anchor-target id="install-the-nextjs-addon">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#install-the-nextjs-addon">#</doc-anchor-trigger>
+        <span>Install the Next.js addon</span>
+    </h3>
+</doc-anchor-target>
+<p>See <a href="https://storybook.js.org/addons/storybook-addon-next">Next.js + Storybook installation instructions</a>.</p>
+<doc-anchor-target id="configure-storybook">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configure-storybook">#</doc-anchor-trigger>
+        <span>Configure Storybook</span>
+    </h3>
+</doc-anchor-target>
+<p>Delete the newly created <code v-pre>stories</code> diectory, the default example stories created during the installation process.</p>
+<doc-anchor-target id="configure-mainjs">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configure-mainjs">#</doc-anchor-trigger>
+        <span>Configure main.js</span>
+    </h4>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">.storybook/main.js</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">module.exports = {
+  stories: [&quot;../**/*.stories.mdx&quot;, &quot;../**/*.stories.tsx&quot;],
+  addons: [
+    &quot;@storybook/addon-links&quot;,
+    &quot;@storybook/addon-essentials&quot;,
+    &quot;@storybook/addon-interactions&quot;,
+    &quot;storybook-addon-next&quot;,
+  ],
+  framework: &quot;@storybook/react&quot;,
+  core: {
+    builder: &quot;webpack5&quot;,
+  },
+  staticDirs: [&quot;../PATH_TO_STATIC_DIRECTORY&quot;],
+};
+</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="configure-previewjs">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configure-previewjs">#</doc-anchor-trigger>
+        <span>Configure preview.js</span>
+    </h4>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">.storybook/preview.js</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Import global styles
+import &quot;normalize.css&quot;; // only if needed
+import &quot;../PATH_TO_STYLES_DIRECTORY/themes/default.scss&quot;;
+import &quot;../PATH_TO_STYLES_DIRECTORY/base.scss&quot;;
+
+// Configure breakpoints
+const breakpoints = {
+  small: {
+    name: &quot;Small&quot;,
+    type: &quot;mobile&quot;,
+    styles: {
+      height: &quot;640&quot;,
+      width: &quot;360&quot;
+    }
+  },
+  medium: {
+    name: &quot;Medium&quot;,
+    type: &quot;tablet&quot;,
+    styles: {
+      height: &quot;962&quot;,
+      width: &quot;601&quot;
+    }
+  },
+  large: {
+    name: &quot;Large&quot;,
+    type: &quot;desktop&quot;,
+    styles: {
+      height: &quot;768&quot;,
+      width: &quot;1024&quot;
+    }
+  },
+  xlarge: {
+    name: &quot;Extra Large&quot;,
+    type: &quot;desktop&quot;,
+    styles: {
+      height: &quot;1080&quot;,
+      width: &quot;1920&quot;
+    }
+  }
+}
+
+export const parameters = {
+  actions: { argTypesRegex: &quot;^on[A-Z].*&quot; },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+  viewport: {
+    viewports: breakpoints,
+  },
+  options: {
+    storySort: {
+      order: [
+        &quot;Documentation&quot;,
+        &quot;Design System&quot;,
+        [
+          &quot;Atoms&quot;,
+          &quot;Molecules&quot;,
+          &quot;Organisms&quot;,
+          &quot;Templates&quot;,
+          &quot;Pages&quot;,
+        ],
+      ],
+    },
+  },
+};</code></pre>
+</doc-codeblock></div>
+<hr />
+<doc-anchor-target id="common-errors">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#common-errors">#</doc-anchor-trigger>
+        <span>Common Errors</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">ERR! Error: Cannot find module 'styled-jsx'</code></pre>
+</doc-codeblock></div>
+<p><strong>Solution</strong>: <code v-pre>npm install --save styled-jsx</code></p>
+<hr />
 <doc-anchor-target id="addons--resources">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#addons--resources">#</doc-anchor-trigger>
@@ -334,6 +475,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Storybook", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Storybook", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>
