@@ -12,14 +12,3 @@ The purpose of this document is to help guide you through working with a potenti
 ## Coding Standards
 
 - Avoid using `React.FC`, see [Remove React.FC from Typescript template](https://github.com/facebook/create-react-app/pull/8177) for more information
-
----
-
-## Useful Libraries
-
-The following is a list of primary React libraries used by Entermedia:
-
-- [Next.js](/javascript/reactjs/nextjs) - The React.js framework Entermedia has standarized on.
-- [Next.js for Drupal](https://next-drupal.org/) - Next.js Drupal headless applications.
-- [Faust.js](https://faustjs.org/) - Next.js WordPress headless applications.
-- [Formik](https://formik.org/) - Quickly build forms with validation, logic, i18n & more.

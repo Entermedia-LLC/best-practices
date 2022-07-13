@@ -58,6 +58,18 @@ Next.js is fairly open in how you can organize your files and directories; if yo
 Add an empty `.nojekyll` file in the `/public` directory to bypass Jekyll and prevent issues will files or directories that start with underscores (_).
 !!!
 
-[!ref `styles` Directory Structure](/css/structure.md)
+[!ref `styles` Directory Structure](https://github.com/Entermedia-LLC/scss)
 
-[!ref `components` Directory Structure](/javascript/reactjs/components.md)
+[!ref `components` Directory Structure](https://github.com/Entermedia-LLC/nextjs-components)
+
+[!ref `lib` Directory Structure](https://github.com/Entermedia-LLC/nextjs-lib)
+
+---
+
+## Tools & Resources
+
+The following are Next.js tools & resources we use at Entermedia. This list will grow and change over time and is not meant to be comprehensive. Generally, we encourage or require these tools to be used in favor of other ones. Rules governing tools to be used and packaged with a client site will be much stricter than those used on internal projects.
+
+- [Next.js](/javascript/reactjs/nextjs) - The React.js framework Entermedia has standarized on.
+- [Next.js for Drupal](https://next-drupal.org/) - Next.js Drupal headless applications.
+- [Faust.js](https://faustjs.org/) - Next.js WordPress headless applications.
