@@ -36,6 +36,22 @@ Example component using the BEM methodology:
 
 ### Coding Standards
 
+Entermedia uses [stylelint](https://stylelint.io/) to help developers avoid errors and enforce conventions in your styles. Use the configuration file below when setting it up in a new project (if needed).
+
+```json .stylelintrc.json
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "plugins": ["stylelint-order", "stylelint-scss"],
+  "rules": {
+    "order/properties-alphabetical-order": true
+  }
+}
+```
+
+!!!
+Requires [`stylelint-order`](https://www.npmjs.com/package/stylelint-order), [`stylelint-config-sass-guidelines`](https://www.npmjs.com/package/stylelint-config-sass-guidelines) & [`stylelint-scss`](https://www.npmjs.com/package/stylelint-scss).
+!!!
+
 - Class names should only include one element level.
   !!!danger Don't
   ```css

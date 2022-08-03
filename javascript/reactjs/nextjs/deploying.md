@@ -11,7 +11,10 @@ Create the `gh-pages.deploy.yml` below in the `.github/workflows` directory.
 
 ```yml
 name: Build and Deploy
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -44,7 +47,6 @@ jobs:
           BRANCH: gh-pages
           FOLDER: out
           CLEAN: true
-
 ```
 
 With this in place, when changes are pushed to the `main` branch, a build will be triggered and update the `gh-pages` branch which should be used to serve the site.

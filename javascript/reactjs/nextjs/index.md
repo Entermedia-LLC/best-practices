@@ -13,8 +13,9 @@ The purpose of this document is to help guide you through working with a potenti
 
 Entermedia follows a standardized approach for setting up new Next.js projects. This allows developers to easily switch between projects, faster project initialization, and ramp-up for new developers. All of these types of projects should start with this same setup.
 
-### Step 1: Project installation
+### Step 1: Installation Options
 
+- [Next.js Installation](https://nextjs.org/docs/getting-started)
 - Drupal Project Installation with [Next.js for Drupal](https://next-drupal.org/)
 - [WordPress Project Setup](https://faustjs.org/docs/next/getting-started#on-macos-linux-or-wsl-bash) with [Faust.js](https://faustjs.org/)
 
@@ -45,8 +46,13 @@ npm install --save-dev leasot
 Once installed, add a new npm command in the `package.json` file:
 
 ```json
-"todo": "leasot '**/*.tsx' '**/*.scss' '**/*.ts' --ignore '**/node_modules', '**/schema.generated.ts'"
+"todo": "leasot '**/*.tsx' '**/*.scss' '**/*.ts' --ignore '**/node_modules' '**/schema.generated.ts'"
 ```
+
+### Step 6: Default Next.js Additional Steps
+
+- [Install Sass](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)
+- [Install the `storybook-addon-sass-postcss` package](https://storybook.js.org/addons/storybook-addon-sass-postcss)
 
 ---
 
@@ -63,6 +69,29 @@ Add an empty `.nojekyll` file in the `/public` directory to bypass Jekyll and pr
 [!ref `components` Directory Structure](https://github.com/Entermedia-LLC/nextjs-components)
 
 [!ref `lib` Directory Structure](https://github.com/Entermedia-LLC/nextjs-lib)
+
+### Install Dependencies & Setup Config
+
+- `npm i html-react-parser`
+- Create a `config.ts` file that's hold project specific configuration:
+  ```js config.ts
+  const SITE_NAME = "Project Name";
+
+  export { SITE_NAME };
+  ```
+
+---
+
+## Pages Setup
+
+In `pages/_app.tsx` add the project's global styles:
+
+```js _app.tsx
+// Import global styles
+import "normalize.css/normalize.css";
+import "../scss/base.scss";
+import "../scss/themes/default.scss";
+```
 
 ---
 
