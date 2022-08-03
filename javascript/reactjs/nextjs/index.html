@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.3.0.711050580988">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.712859209250">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 2.3.0">
+    <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
     <title>Next.js</title>
@@ -30,12 +30,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.3.0.711050580988" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.712859209250" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.3.0.711050580988" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="../../../resources/js/retype.js?v=2.3.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.3.0.711050580988" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.3.0.711050580988" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.712859209250" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.712859209250" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.712859209250" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -256,13 +256,14 @@
     </h2>
 </doc-anchor-target>
 <p>Entermedia follows a standardized approach for setting up new Next.js projects. This allows developers to easily switch between projects, faster project initialization, and ramp-up for new developers. All of these types of projects should start with this same setup.</p>
-<doc-anchor-target id="step-1-project-installation">
+<doc-anchor-target id="step-1-installation-options">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1-project-installation">#</doc-anchor-trigger>
-        <span>Step 1: Project installation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1-installation-options">#</doc-anchor-trigger>
+        <span>Step 1: Installation Options</span>
     </h3>
 </doc-anchor-target>
 <ul>
+<li><a href="https://nextjs.org/docs/getting-started">Next.js Installation</a></li>
 <li>Drupal Project Installation with <a href="https://next-drupal.org/">Next.js for Drupal</a></li>
 <li><a href="https://faustjs.org/docs/next/getting-started#on-macos-linux-or-wsl-bash">WordPress Project Setup</a> with <a href="https://faustjs.org/">Faust.js</a></li>
 </ul>
@@ -316,8 +317,18 @@
 </doc-codeblock></div>
 <p>Once installed, add a new npm command in the <code v-pre>package.json</code> file:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-json"><code v-pre class="language-json">&quot;todo&quot;: &quot;leasot '**/*.tsx' '**/*.scss' '**/*.ts' --ignore '**/node_modules', '**/schema.generated.ts'&quot;</code></pre>
+<pre class="language-json"><code v-pre class="language-json">&quot;todo&quot;: &quot;leasot '**/*.tsx' '**/*.scss' '**/*.ts' --ignore '**/node_modules' '**/schema.generated.ts'&quot;</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="step-6-default-nextjs-additional-steps">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-6-default-nextjs-additional-steps">#</doc-anchor-trigger>
+        <span>Step 6: Default Next.js Additional Steps</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><a href="https://nextjs.org/docs/basic-features/built-in-css-support#sass-support">Install Sass</a></li>
+<li><a href="https://storybook.js.org/addons/storybook-addon-sass-postcss">Install the <code v-pre>storybook-addon-sass-postcss</code> package</a></li>
+</ul>
 <hr />
 <doc-anchor-target id="project-structure">
     <h2>
@@ -385,6 +396,38 @@
     <a href="https://github.com/Entermedia-LLC/nextjs-lib" class="absolute block inset-0"></a>
 </div>
 </p>
+<doc-anchor-target id="install-dependencies--setup-config">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#install-dependencies--setup-config">#</doc-anchor-trigger>
+        <span>Install Dependencies &amp; Setup Config</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>npm i html-react-parser</code></li>
+<li>Create a <code v-pre>config.ts</code> file that&#x27;s hold project specific configuration:
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">config.ts</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">const SITE_NAME = &quot;Project Name&quot;;
+
+export { SITE_NAME };</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<hr />
+<doc-anchor-target id="pages-setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#pages-setup">#</doc-anchor-trigger>
+        <span>Pages Setup</span>
+    </h2>
+</doc-anchor-target>
+<p>In <code v-pre>pages/_app.tsx</code> add the project&#x27;s global styles:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">_app.tsx</div>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Import global styles
+import &quot;normalize.css/normalize.css&quot;;
+import &quot;../scss/base.scss&quot;;
+import &quot;../scss/themes/default.scss&quot;;</code></pre>
+</doc-codeblock></div>
 <hr />
 <doc-anchor-target id="tools--resources">
     <h2>
@@ -417,10 +460,10 @@
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../javascript/reactjs/nextjs/faustjs/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../javascript/reactjs/nextjs/deploying/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Faust.​js</span>
+                                                <span class="block mt-1">Deploying</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
