@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.entermedia.com/sitemap.xml.gz
+Sitemap: https://entermedia-llc.github.io/best-practices/sitemap.xml.gz
