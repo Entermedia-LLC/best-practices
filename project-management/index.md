@@ -25,7 +25,7 @@ User stories are **short, simple descriptions** of a feature or bug told from th
       e. Include **layered designs** and/or detailed specs such as, font sizes, aspect ratios, etc.
 
 !!!
-As a rule of thumb, a new developer that's unfamiliar with the project should have all details needed to complete the request without having to make assumptions.
+**Rule of thumb:** a new developer that's unfamiliar with the project should have all details needed to complete the request without having to make assumptions or searching to find what's described.
 !!!
 
 ### Assigning Stories
