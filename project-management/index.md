@@ -36,3 +36,20 @@ User stories are **short, simple descriptions** of a feature or bug told from th
    c. link any related or blocking stories
 2. **If incomplete**, awaiting details, or otherwise not ready to be worked on, assign to the **project manager**
 3. **If complete**, ready to be worked on, assign to the appropriate **developer**
+
+### Story Workflow & QA
+
+1. Each morning developers should review the assigned stories in the **To Do** column & make note of any questions/concerns to go over during scrum.
+2. Once a developer begins to work on a story, they should move it to the **In Progress** column in Jira.
+3. After completion, the developer should comment on the story with a link/location of the change, then move to the **QA / Approval** column.
+4. The project manager should then review the update, & determine if all is good or needs additional work.
+5. If needs additional work, comment with those details and move back to the **To Do** column.
+6. If approved, move to the **Approved / Ready for Live** column.
+
+### Deploying Stories
+
+Once a batch of stories has been moved to the **Approved / Ready for Live** column & it's time to deploy those changes:
+
+1. The project manager creates a deploy story, links all approved stories to it & assigns accordingly.
+2. Once the deployment has been completed, the developer should comment on the deploy story then move to the **QA / Approval** column.
+3. The project manager should then test the deployed changes & if all looks good moves the deploy & all linked stories to the **Done** column.
