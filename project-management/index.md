@@ -46,6 +46,10 @@ User stories are **short, simple descriptions** of a feature or bug told from th
 5. If needs additional work, comment with those details and move back to the **To Do** column.
 6. If approved, move to the **Approved / Ready for Live** column.
 
+!!!
+Ideally, all stories that should be completed for the day should have been created & assigned to developers **before the beginning of their workday** so they can plan accordingly.
+!!!
+
 ### Deploying Stories
 
 Once a batch of stories has been moved to the **Approved / Ready for Live** column & it's time to deploy those changes:
