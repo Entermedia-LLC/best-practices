@@ -15,10 +15,13 @@ Entermedia uses [TypeScript](https://www.typescriptlang.org/), a strongly typed 
 
 ## Basic Prop Types Examples
 A list of TypeScript types you will likely use in a TypeScript:
-  ```
+  ```js ExampleComponent.tsx
   type AppProps = {
+    /** string */
     message: string;
+    /** number */
     count: number;
+    /** Boolean */
     disabled: boolean;
     /** array of a type! */
     names: string[];
@@ -59,7 +62,7 @@ A list of TypeScript types you will likely use in a TypeScript:
 
 ## Useful Prop Type Examples:
 Relevant for components that accept other React components as props.
-  ```
+  ```js ExampleComponent.tsx
   export declare interface AppProps {
     children?: React.ReactNode; // best, accepts everything React can render
     childrenElement: JSX.Element; // A single React element
@@ -71,7 +74,7 @@ Relevant for components that accept other React components as props.
   ```
 
 ## Function components:
-  ```
+  ```js ExampleComponent.tsx
   // Easiest way to declare a Function Component; return type is inferred.
   const App = ({ message }: AppProps) => <div>{message}</div>;
 
