@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/best-practices">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.717603167115">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718292720807">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,11 +31,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/best-practices/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.717603167115" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.718292720807" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.717603167115" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.718292720807" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.717603167115" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.718292720807" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -260,6 +260,84 @@
 <li>Use <code v-pre>interface</code> over <code v-pre>type</code> so that consumers can extend the properties</li>
 <li>Never use <code v-pre>any</code> as a type definition, see <a href="https://thoughtbot.com/blog/typescript-stop-using-any-there-s-a-type-for-that">TypeScript: Stop Using &#x27;any&#x27;, There&#x27;s a Type For That</a> for more information.</li>
 </ul>
+<doc-anchor-target id="basic-prop-types-examples">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#basic-prop-types-examples">#</doc-anchor-trigger>
+        <span>Basic Prop Types Examples</span>
+    </h2>
+</doc-anchor-target>
+<p>A list of TypeScript types you will likely use in a TypeScript:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">type AppProps = {
+  message: string;
+  count: number;
+  disabled: boolean;
+  /** array of a type! */
+  names: string[];
+  /** string literals to specify exact string values, with a union type to join them together */
+  status: &quot;waiting&quot; | &quot;success&quot;;
+  /** any object as long as you dont use its properties (NOT COMMON but useful as placeholder) */
+  obj: object;
+  obj2: {}; // almost the same as `object`, exactly the same as `Object`
+  /** an object with any number of properties (PREFERRED) */
+  obj3: {
+    id: string;
+    title: string;
+  };
+  /** array of objects! (common) */
+  objArr: {
+    id: string;
+    title: string;
+  }[];
+  /** a dict object with any number of properties of the same type */
+  dict1: {
+    [key: string]: MyTypeHere;
+  };
+  dict2: Record&lt;string, MyTypeHere&gt;; // equivalent to dict1
+  /** any function as long as you don't invoke it (not recommended) */
+  onSomething: Function;
+  /** function that doesn't take or return anything (VERY COMMON) */
+  onClick: () =&gt; void;
+  /** function with named prop (VERY COMMON) */
+  onChange: (id: number) =&gt; void;
+  /** function type syntax that takes an event (VERY COMMON) */
+  onChange: (event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void;
+  /** alternative function type syntax that takes an event (VERY COMMON) */
+  onClick(event: React.MouseEvent&lt;HTMLButtonElement&gt;): void;
+  /** an optional prop (VERY COMMON!) */
+  optional?: OptionalType;
+}; </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="useful-prop-type-examples">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#useful-prop-type-examples">#</doc-anchor-trigger>
+        <span>Useful Prop Type Examples:</span>
+    </h2>
+</doc-anchor-target>
+<p>Relevant for components that accept other React components as props.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">export declare interface AppProps {
+  children?: React.ReactNode; // best, accepts everything React can render
+  childrenElement: JSX.Element; // A single React element
+  style?: React.CSSProperties; // to pass through style props
+  onChange?: React.FormEventHandler&lt;HTMLInputElement&gt;; // form events! the generic parameter is the type of event.target
+  props: Props &amp; React.ComponentPropsWithoutRef&lt;&quot;button&quot;&gt;; // to impersonate all the props of a button element and explicitly not forwarding its ref
+  props2: Props &amp; React.ComponentPropsWithRef&lt;MyButtonWithForwardRef&gt;; // to impersonate all the props of MyButtonForwardedRef and explicitly forwarding its ref
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="function-components">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#function-components">#</doc-anchor-trigger>
+        <span>Function components:</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">// Easiest way to declare a Function Component; return type is inferred.
+const App = ({ message }: AppProps) =&gt; &lt;div&gt;{message}&lt;/div&gt;;
+
+// you can choose annotate the return type so an error is raised if you accidentally return some other type
+const App = ({ message }: AppProps): JSX.Element =&gt; &lt;div&gt;{message}&lt;/div&gt;;</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
