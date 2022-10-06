@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/best-practices">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718293165191">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718379780704">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/best-practices/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.718293165191" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.718379780704" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.718293165191" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.718379780704" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.718293165191" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.718293165191" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.718379780704" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.718379780704" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -259,7 +259,8 @@
 <ul>
 <li>Avoid inlining type declarations</li>
 <li>Use <code v-pre>interface</code> over <code v-pre>type</code> so that consumers can extend the properties</li>
-<li>Never use <code v-pre>any</code> as a type definition, see <a href="https://thoughtbot.com/blog/typescript-stop-using-any-there-s-a-type-for-that">TypeScript: Stop Using &#x27;any&#x27;, There&#x27;s a Type For That</a> for more information.</li>
+<li><strong>Never use <code v-pre>any</code> as a type definition</strong>, see <a href="https://thoughtbot.com/blog/typescript-stop-using-any-there-s-a-type-for-that">TypeScript: Stop Using &#x27;any&#x27;, There&#x27;s a Type For That</a></li>
+<li>When defining a component&#x27;s properties, always use the suffix <code v-pre>Props</code> (ex. <code v-pre>CardProps</code>, <code v-pre>HomepageProps</code>)</li>
 </ul>
 <doc-anchor-target id="basic-prop-types-examples">
     <h2>
@@ -272,46 +273,46 @@
 <div class="codeblock-title">ExampleComponent.tsx</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">type AppProps = {
   /** string */
-  message: string;
+  message: string,
   /** number */
-  count: number;
+  count: number,
   /** Boolean */
-  disabled: boolean;
+  disabled: boolean,
   /** array of a type! */
-  names: string[];
+  names: string[],
   /** string literals to specify exact string values, with a union type to join them together */
-  status: &quot;waiting&quot; | &quot;success&quot;;
+  status: &quot;waiting&quot; | &quot;success&quot;,
   /** any object as long as you dont use its properties (NOT COMMON but useful as placeholder) */
-  obj: object;
-  obj2: {}; // almost the same as `object`, exactly the same as `Object`
+  obj: object,
+  obj2: {}, // almost the same as `object`, exactly the same as `Object`
   /** an object with any number of properties (PREFERRED) */
   obj3: {
-    id: string;
-    title: string;
-  };
+    id: string,
+    title: string,
+  },
   /** array of objects! (common) */
   objArr: {
-    id: string;
-    title: string;
-  }[];
+    id: string,
+    title: string,
+  }[],
   /** a dict object with any number of properties of the same type */
   dict1: {
-    [key: string]: MyTypeHere;
-  };
-  dict2: Record&lt;string, MyTypeHere&gt;; // equivalent to dict1
+    [key: string]: MyTypeHere,
+  },
+  dict2: Record&lt;string, MyTypeHere&gt;, // equivalent to dict1
   /** any function as long as you don't invoke it (not recommended) */
-  onSomething: Function;
+  onSomething: Function,
   /** function that doesn't take or return anything (VERY COMMON) */
-  onClick: () =&gt; void;
+  onClick: () =&gt; void,
   /** function with named prop (VERY COMMON) */
-  onChange: (id: number) =&gt; void;
+  onChange: (id: number) =&gt; void,
   /** function type syntax that takes an event (VERY COMMON) */
-  onChange: (event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void;
+  onChange: (event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void,
   /** alternative function type syntax that takes an event (VERY COMMON) */
-  onClick(event: React.MouseEvent&lt;HTMLButtonElement&gt;): void;
+  onClick(event: React.MouseEvent&lt;HTMLButtonElement&gt;): void,
   /** an optional prop (VERY COMMON!) */
-  optional?: OptionalType;
-}; </code></pre>
+  optional?: OptionalType,
+};</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="useful-prop-type-examples">
     <h2>

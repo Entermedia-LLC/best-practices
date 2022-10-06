@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/best-practices">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718293165191">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718379780704">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/best-practices/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.4.0.718293165191" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.718379780704" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.718293165191" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.718379780704" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.718293165191" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.718293165191" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.718379780704" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.718379780704" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -277,6 +277,77 @@ indent_style = tab
 indent_size = 2</code></pre>
 </doc-codeblock></div>
 <p>Developers may extend and/or customize these rules as new file formats are added to the project.</p>
+<hr />
+<doc-anchor-target id="code-commenting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#code-commenting">#</doc-anchor-trigger>
+        <span>Code Commenting</span>
+    </h2>
+</doc-anchor-target>
+<p>Comments play a very important role in communication, specially when different developers are working on the same code, and it saves a lot of time. Also, since new age compilers anyways remove all the comments while creating the production code, it’s better to have them than not.</p>
+<p>Entermedia uses the following list of conventions every developer should follow in regards to commenting code:</p>
+<ol>
+<li>Comments <strong>should not duplicate the code</strong>.</li>
+<li>Good comments do not excuse unclear code.</li>
+<li>If you can’t write a clear comment, there may be a problem with the code.</li>
+<li>Comments <strong>should dispel confusion</strong>, not cause it.</li>
+<li>Explain unidiomatic code in comments.</li>
+<li>Provide links to the original source of copied code.</li>
+<li>Include links to external references where they will be most helpful.</li>
+<li>Add comments when fixing bugs.</li>
+<li>Use comments to mark incomplete implementations (i.e. <code v-pre>@TODO</code>, <code v-pre>@FIXME</code>).</li>
+</ol>
+<p>For JavaScript, see <a href="/best-practices/javascript/#code-commenting">JavaScript Code Commenting Standards</a>.</p>
+<doc-anchor-target id="documenting-tips">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#documenting-tips">#</doc-anchor-trigger>
+        <span>Documenting Tips</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="language">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#language">#</doc-anchor-trigger>
+        <span>Language</span>
+    </h4>
+</doc-anchor-target>
+<p>Short descriptions should be clear, simple, and brief. Document “what” and “when” – “why” should rarely need to be included. The “why” can go in the long description if needed. For example:</p>
+<p>Functions and closures are <em>third-person singular</em> elements, meaning third-person singular verbs should be used to describe what each does.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Tip</h5>
+<p>Need help remembering how to conjugate for third-person singular verbs? Imagine prefixing the function, hook, class, or method summary with “It”:</p>
+<ul>
+<li><em>Good:</em> “(It) Does something.”</li>
+<li><em>Bad:</em> “(It) Do something.”</li>
+</ul>
+        </div>
+    </div>
+</div>
+<p><strong>Functions:</strong> What does the function do?</p>
+<ul>
+<li><em>Good:</em> Handles a click on X element.</li>
+<li><em>Bad:</em> Included for back-compat for X element.</li>
+</ul>
+<p><strong><code v-pre>@since</code></strong>: Can be used when searching for the version something was added using tools such as <code v-pre>svn blame</code></p>
+<p>If, after using these tools, the version number cannot be determined, use <code v-pre>@since Unknown</code>.</p>
+<doc-anchor-target id="grammer">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#grammer">#</doc-anchor-trigger>
+        <span>Grammer</span>
+    </h4>
+</doc-anchor-target>
+<p>Descriptive elements should be written as complete sentences. The one exception to this standard is file header summaries, which are intended as file “titles” more than sentences.</p>
+<p>The serial (Oxford) comma should be used when listing elements in summaries, descriptions, and parameter or return descriptions.</p>
 <hr />
 <doc-anchor-target id="avoid-cookies">
     <h2>
