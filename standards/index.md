@@ -4,13 +4,9 @@ icon: check-circle
 order: 950
 ---
 
-At Entermedia, we aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge technologies that may not have widespread browser support. Our markup embodies this approach.
+The following are general coding standards that should be applied to every project:
 
-Markup is intended to define the structure and outline of a document and to offer semantic structure for the document's contents. Markup should not define the look and feel of the content on the page beyond the most basic structural concepts such as headers, paragraphs, and lists.
-
-At Entermedia, we employ progressive enhancement to ensure that the sites we build for our clients are accessible to as many users as possible.
-
-Progressive enhancement means building a website that is robust, fault tolerant, and accessible. Progressive enhancement begins with a baseline experience and builds out from there, adding features for browsers that support them. It does not require us to select supported browsers or revert to table-based layouts. Baselines for browser and device support are set on a project-by-project basis.
+1. **Never include API or token keys in code.** Instead, they should be defined in a ignored file that's never commited to code.
 
 ---
 
