@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/best-practices">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718379780704">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718469459508">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Coding Standards</title>
     <meta name="title" content="Coding Standards">
-    <meta name="description" content="At Entermedia, we aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge..." />
+    <meta name="description" content="The following are general coding standards that should be applied to every project:" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://entermedia-llc.github.io/best-practices/standards/" />
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://entermedia-llc.github.io/best-practices/standards/">
     <meta property="og:title" content="Coding Standards">
-    <meta property="og:description" content="At Entermedia, we aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge...">
+    <meta property="og:description" content="The following are general coding standards that should be applied to every project:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://entermedia-llc.github.io/best-practices/standards/">
     <meta property="twitter:title" content="Coding Standards">
-    <meta property="twitter:description" content="At Entermedia, we aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge...">
+    <meta property="twitter:description" content="The following are general coding standards that should be applied to every project:">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/best-practices/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.4.0.718379780704" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.718469459508" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.718379780704" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.718469459508" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.718379780704" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.718379780704" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.718469459508" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.718469459508" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -248,10 +248,10 @@
         <span>Coding Standards</span>
     </h1>
 </doc-anchor-target>
-<p>At Entermedia, we aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge technologies that may not have widespread browser support. Our markup embodies this approach.</p>
-<p>Markup is intended to define the structure and outline of a document and to offer semantic structure for the document&#x27;s contents. Markup should not define the look and feel of the content on the page beyond the most basic structural concepts such as headers, paragraphs, and lists.</p>
-<p>At Entermedia, we employ progressive enhancement to ensure that the sites we build for our clients are accessible to as many users as possible.</p>
-<p>Progressive enhancement means building a website that is robust, fault tolerant, and accessible. Progressive enhancement begins with a baseline experience and builds out from there, adding features for browsers that support them. It does not require us to select supported browsers or revert to table-based layouts. Baselines for browser and device support are set on a project-by-project basis.</p>
+<p>The following are general coding standards that should be applied to every project:</p>
+<ol>
+<li><strong>Never include API or token keys in code.</strong> Instead, they should be defined in a ignored file that&#x27;s never commited to code.</li>
+</ol>
 <hr />
 <doc-anchor-target id="editor-config">
     <h2>
