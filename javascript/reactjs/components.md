@@ -19,35 +19,49 @@ When building components, they should be as **CMS/project agnostic** as possible
 // React.js dependencies
 import { useState } from "react";
 
+// Next.js dependencies
+
+// Library dependencies
+
 // Component dependencies
 
 // Component styles
-import styles from "./my-component.module.scss"
+import styles from "./my-component.module.scss";
+
+// Component helpers
 
 // Component properties
 export type MyComponentProps = {
   /** Property description */
-  className?: string
-}
+  className?: string,
+};
 
 // Component output
 export const MyComponent = ({ className }: MyComponentProps) => {
-  // States
+  /**
+   * Component states
+   */
 
-  // Events
+  /**
+   * Computed properties
+   */
 
-  // useEffect
+  /**
+   * Event handlers
+   */
 
-  // Classes
+  /**
+   * useEffect
+   */
+
+  /**
+   * Component classes
+   */
   const allClassNames = [styles["my-component"]];
   className && allClassNames.push(className);
 
-  return (
-    <div className={allClassNames.join(" ")}>
-      My Component
-    </div>
-  )
-}
+  return <div className={allClassNames.join(" ")}>My Component</div>;
+};
 ```
 
 ---
