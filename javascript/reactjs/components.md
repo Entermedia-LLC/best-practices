@@ -31,10 +31,10 @@ import styles from "./my-component.module.scss";
 // Component helpers
 
 // Component properties
-export type MyComponentProps = {
+export interface MyComponentProps {
   /** Property description */
-  className?: string,
-};
+  className?: string;
+}
 
 // Component output
 export const MyComponent = ({ className }: MyComponentProps) => {
