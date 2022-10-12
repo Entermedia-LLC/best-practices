@@ -78,22 +78,22 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // Component dependencies
-import { ExampleComponent } from "./ExampleComponent";
+import { ExampleComponent as ExampleComponentComponent } from "./ExampleComponent";
 
 // Test data
 
 // Story config
 export default {
   title: "Design System/Organisms/Example Component",
-  component: ExampleComponent,
+  component: ExampleComponentComponent,
   parameters: {
     layout: "fullscreen", // centered, fullscreen
   },
-} as ComponentMeta<typeof ExampleComponent>;
+} as ComponentMeta<typeof ExampleComponentComponent>;
 
 // Template
-const Template: ComponentStory<typeof ExampleComponent> = (args) => (
-  <ExampleComponent {...args} />
+const Template: ComponentStory<typeof ExampleComponentComponent> = (args) => (
+  <ExampleComponentComponent {...args} />
 );
 
 // Stories
